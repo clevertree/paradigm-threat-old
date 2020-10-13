@@ -1,12 +1,24 @@
 import React from 'react';
+import {
+    Switch,
+    Route,
+    Redirect,
+    BrowserRouter
+} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import AssetBrowserPage from "./browser/page/AssetBrowserPage";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <BrowserRouter>
+          <Switch>
+              <Route path={'/'} >
+                  {props => <AssetBrowserPage fullscreen {...props}/>}
+              </Route>
+          </Switch>
+      </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

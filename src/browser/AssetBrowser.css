@@ -1,0 +1,11 @@
+div.asset-browser {
+
+}
+
+div.asset-browser > div.directories {
+    padding: 1em;
+}
+
+div.asset-browser > div.directories > a {
+    display: block;
+}
