@@ -10,12 +10,12 @@ import UnknownAsset from "./asset-type/UnknownAsset";
 import {browserIndexURL} from "../config.json";
 
 import "./AssetBrowser.css";
+import AssetIndex from "./index/AssetIndex";
 
 export default class AssetBrowser extends React.Component {
     /** Property validation **/
     static propTypes = {
         location: PropTypes.object.isRequired,
-        onLoad: PropTypes.func
     };
     
     constructor(props) {
@@ -31,6 +31,12 @@ export default class AssetBrowser extends React.Component {
 
     componentDidMount() {
         this.updateIndex()
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        // console.log(this.props.location.pathname, prevProps.location.pathname);
+        if(this.props.location.pathname !== prevProps.location.pathname)
+            this.updateIndex()
     }
 
 
@@ -69,7 +75,7 @@ export default class AssetBrowser extends React.Component {
             return null;
         return <div className="files">
             {this.state.files.map(file => {
-                const url = new URL(file, browserIndexURL).toString();
+                const url = new URL('.' + file, browserIndexURL).toString();
                 return this.renderAsset(url);
             })}
         </div>;
@@ -94,39 +100,14 @@ export default class AssetBrowser extends React.Component {
     }
 
     async updateIndex() {
-        const response = await fetch(browserIndexURL);
-        const indexJSON = await response.json();
-        const currentPath = '.' + this.props.location.pathname;
-        const state = {
-            files: [],
-            directories: [],
-            indexFile: null
-        }
-        for (const filePath of indexJSON) {
-            if(!filePath.startsWith(currentPath))
-                continue;
-            const relativeFilePath = filePath.replace(currentPath, '');
-            if(relativeFilePath.indexOf('/') === -1) {
-                if(relativeFilePath === 'index.md') {
-                    state.indexFile = relativeFilePath;
-                } else {
-                    state.files.push(filePath);
-                }
-            } else {
-                const directory = relativeFilePath.split('/').shift();
-                if(state.directories.indexOf(directory) === -1)
-                    state.directories.push(directory)
-            }
-        }
-        console.log('indexJSON', state);
+        const currentPath = this.props.location.pathname;
+        const assetIndex = new AssetIndex();
+        const state = await assetIndex.getPathFiles(currentPath);
+        state.directories = state.directories.filter(
+            directory => directory !== currentPath
+        )
 
         this.setState(state);
-        if(this.props.onLoad) {
-            const links = state.directories.map(directory =>
-                [new URL(directory, browserIndexURL).toString(), directory]
-            )
-            this.props.onLoad(links, this);
-        }
     }
 }
 

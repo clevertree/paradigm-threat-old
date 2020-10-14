@@ -2,6 +2,13 @@ div.asset-browser {
 
 }
 
+/** Files **/
+div.asset-browser > div.files {
+}
+
+
+/** Directories **/
+
 div.asset-browser > div.directories {
     padding: 1em;
 }

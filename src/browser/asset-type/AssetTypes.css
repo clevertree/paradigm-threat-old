@@ -1,0 +1,8 @@
+div.image-asset {
+    display: inline;
+    margin: 0.5em;
+}
+div.image-asset > img {
+    max-height: 24em;
+    max-width: 100%;
+}

@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./AssetTypes.css";
+
 export default class ImageAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
