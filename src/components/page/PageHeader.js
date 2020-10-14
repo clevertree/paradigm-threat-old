@@ -9,8 +9,12 @@ export default class PageHeader extends React.Component {
             onScroll: e => this.updateScrollPosition(e)
         }
         this.ref = {
-            header: React.createRef(),
-            headerLinks: React.createRef(),
+            // header: React.createRef(),
+            headerImage: React.createRef(),
+            // headerLinks: React.createRef(),
+        }
+        this.state = {
+            floating: false
         }
     }
 
@@ -25,9 +29,9 @@ export default class PageHeader extends React.Component {
     render() {
         const links = this.props.links;
         return (
-            <div className="asui-page-header" ref={this.ref.header}>
-                <a href="/" className="image">{}</a>
-                {links ? <div className="links" ref={this.ref.headerLinks}>
+            <div className={`asui-page-header${this.state.floating ? ' floating' : ''}`}>
+                <a href="/" className="image" ref={this.ref.headerImage}>{}</a>
+                {links ? <div className="links">
                     {links.map(([href, title], i) => {
                         const props = {
                             href
@@ -45,9 +49,13 @@ export default class PageHeader extends React.Component {
     }
 
     updateScrollPosition(e) {
-        const headerLinks = this.ref.headerLinks.current;
-        const {top} = headerLinks.getBoundingClientRect();
-        console.log(e.type, window.scrollY, top);
-
+        const headerImage = this.ref.headerImage.current;
+        // const headerLinks = this.ref.headerLinks.current;
+        const {top, height} = headerImage.getBoundingClientRect();
+        const floating = top + height < 0;
+        if(this.state.floating !== floating) {
+            console.log('floating', floating, top + height, window.scrollY);
+            this.setState({floating})
+        }
     }
 }

@@ -30,7 +30,7 @@ export default class PageMarkdown extends React.Component {
         return (
             <PageContainer {...this.props}>
                 <Markdown
-                    updateLinkTargets={this.props.updateLinkTargets}
+                    // updateLinkTargets={this.props.updateLinkTargets}
                     trim={false}>
                     {this.state.content || "Loading " + this.props.file}
                 </Markdown>

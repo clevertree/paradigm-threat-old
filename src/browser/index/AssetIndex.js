@@ -3,6 +3,18 @@ import {browserIndexURL} from "../../config.json";
 let indexJSON = [];
 export default class AssetIndex  {
 
+    async getDirectories() {
+        const indexJSON = await indexJSONPromise;
+        const directories = [];
+        for (const filePath of indexJSON) {
+            const directory = filePath.split('/').slice(0, -1).join('/') //  relativeFilePath.split('/').shift();
+            if (directory && directories.indexOf(directory) === -1) {
+                directories.push(directory);
+            }
+        }
+        directories.sort();
+        return directories;
+    }
 
     async getPathFiles(currentPath='/') {
         if(currentPath.substr(-1, 1) !== '/')
@@ -10,36 +22,54 @@ export default class AssetIndex  {
         const indexJSON = await indexJSONPromise;
         const stats = {
             files: [],
-            directories: [],
-            indexFile: null
+            indexFile: null,
+            indexStats: null
         }
         for (const filePath of indexJSON) {
-            let relativeFilePath = filePath;
+            // const directory = filePath.split('/').slice(0, -1).join('/') //  relativeFilePath.split('/').shift();
+            // if (directory && stats.directories.indexOf(directory) === -1) {
+            //     stats.directories.push(directory);
+            // }
+
             if (!filePath.startsWith(currentPath))
                 continue;
-            relativeFilePath = filePath.replace(currentPath, '');
-            if(relativeFilePath.indexOf('/') === -1) {
-                if(relativeFilePath === 'index.md') {
-                    stats.indexFile = relativeFilePath;
-                } else {
-                    stats.files.push(filePath);
+            let relativeFilePath = filePath;
+            relativeFilePath = filePath.substr(currentPath.length);
+            if(relativeFilePath === 'index.md') {
+                stats.indexFile = filePath;
+            } else if(relativeFilePath === 'stats.json') {
+                try {
+                    stats.indexStats = await this.getPathStats(filePath);
+                } catch (e) {
+                    console.error("Could not load index.json: ", e);
                 }
             } else {
-                const directory = filePath.split('/').slice(0, -1).join('/') //  relativeFilePath.split('/').shift();
-                if (stats.directories.indexOf(directory) === -1)
-                    stats.directories.push(directory);
+                if(relativeFilePath.indexOf('/') === -1) {
+                    stats.files.push(filePath);
+                }
             }
         }
-        stats.directories.sort();
+
         stats.files.sort();
         console.log('stats', stats);
         return stats;
     }
 
-    async getDirectories(currentPath='/') {
-        const {directories} = await this.getPathFiles(currentPath);
-        // console.log('directories', directories);
-        return directories;
+    async getPathStats(statsPath) {
+        const url = new URL('.' + statsPath, browserIndexURL).toString();
+        const response = await fetch(url);
+        const indexStats = await response.json();
+        if(indexStats && indexStats.meta) {
+            for (const [key, value] of Object.entries(indexStats.meta)) {
+                switch(key) {
+                    case 'og:image':
+                        indexStats.meta[key] = new URL('.' + value, browserIndexURL).toString();
+                        break;
+                    default:
+                }
+            }
+        }
+        return indexStats;
     }
 
 }

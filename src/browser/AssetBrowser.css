@@ -2,6 +2,16 @@ div.asset-browser {
 
 }
 
+div.asset-browser > div.bottom-text {
+    cursor: pointer;
+    display: block;
+    text-align: center;
+    clear: both;
+}
+div.asset-browser > div.bottom-text:hover {
+    color: #3333AA;
+}
+
 /** Files **/
 div.asset-browser > div.files {
 }

@@ -10,3 +10,10 @@ div.asui-page-container {
     /*sans-serif;*/
 }
 
+
+div.asui-page-header.floating > div.links {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+}

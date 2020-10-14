@@ -20,8 +20,11 @@ export default class AssetBrowserPage extends React.Component {
         this.updateLinks();
     }
 
+
     componentDidUpdate(prevProps, prevState, snapshot) {
-        // this.updateLinks();
+        // console.log(this.props.location.pathname, prevProps.location.pathname);
+        if(this.props.location.pathname !== prevProps.location.pathname)
+            this.updateLinks()
     }
 
     render() {
@@ -40,20 +43,76 @@ export default class AssetBrowserPage extends React.Component {
     }
 
     async updateLinks() {
-
+        const currentPath = this.props.location.pathname;
+        let parentPath = '/';
+        if(currentPath.match(/\//g).length >= 2)
+            parentPath = currentPath.split('/').slice(0, -1).join('/');
+        const depth = getDepth(currentPath);
+        // console.log('depth', depth, currentPath);
         const assetIndex = new AssetIndex();
-        const directories = await assetIndex.getDirectories();
-        const headerLinks = directories.map(directory =>
+        const directories = await assetIndex.getDirectories(currentPath);
+        const headerLinks = directories
+            .filter(directory => {
+                const depth2 = getDepth(directory);
+                if(depth === 0)
+                    return depth2 === 1;
+                if(depth === 1)
+                    return depth2 === 1 || directory.startsWith(currentPath);
+                return directory.startsWith(parentPath)
+            })
+            // .filter(directory => hasSameParent(directory, currentPath))
+            .map(directory =>
             [directory, directory.substr(1)]
         )
         headerLinks.unshift(['/', 'home'])
         this.setState({headerLinks});
+
+        // Meta Tags
+        document.title = ORIGINAL_TITLE;
+        const {indexStats} = await assetIndex.getPathFiles(currentPath);
+        if(indexStats && indexStats.meta) {
+            for (const [key, value] of Object.entries(indexStats.meta)) {
+                let paramName = 'name';
+                if(key.startsWith('og:'))
+                    paramName = 'property';
+                switch(key) {
+                    case 'title':
+                        document.title = value;
+                        break;
+                    default:
+                        let elm = document.head.querySelector(`meta[${paramName}="${key}"]`)
+                        if(!elm) {
+                            elm = document.createElement('meta');
+                            elm[paramName] = key;
+                            document.head.appendChild(elm);
+                        }
+                        elm.content = value;
+                        break;
+                }
+            }
+        }
+
     }
 }
+const ORIGINAL_TITLE = document.title;
 
-// TODO: handle page loads
-function processAjaxData(response, urlPath){
-    document.getElementById("content").innerHTML = response.html;
-    document.title = response.pageTitle;
-    window.history.pushState({"html":response.html,"pageTitle":response.pageTitle},"", urlPath);
+function getDepth(directory) {
+    return directory === '/' ? 0 : directory.match(/\//g).length;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,30 @@
-div.image-asset {
-    display: inline;
+/** Image Asset **/
+
+div.asset-image {
+    float: left;
     margin: 0.5em;
 }
-div.image-asset > img {
+div.asset-image > img {
     max-height: 24em;
     max-width: 100%;
+    vertical-align: top;
+    margin: 1em;
 }
+div.asset-image.odd {
+    float: right;
+}
+
+
+/** Markdown Asset **/
+
+div.asset-markdown {
+    display: block;
+    margin: 0 10vw;
+    /*max-width: 1200px;*/
+}
+div.asset-markdown > p {
+    margin: 0 2vw;
+    text-indent: 4px;
+    /*max-width: 1000px;*/
+}
+

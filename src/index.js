@@ -28,11 +28,20 @@ ReactDOM.render(
 
 document.addEventListener('click', function(e) {
     if(e.target && e.target.nodeName.toLowerCase() === 'a') {
-        e.preventDefault();
         const url = new URL(e.target.href);
-        console.log('click', e.target, url);
-        // let history = useHistory();
-        refRouter.current.history.push(url.pathname);
+        if(url.hash) {
+
+        } else {
+            e.preventDefault();
+            console.log('click', e.target, url);
+            // let history = useHistory();
+            refRouter.current.history.push(url.pathname);
+            window.scroll({
+                top: 0,
+                left: 0,
+                behavior: 'smooth'
+            });
+        }
     }
 })
 
