@@ -1,4 +1,3 @@
 {
-  "browserIndexURL": "http://localhost:3000/files/index.json",
-  "browserIndexURL2": "https://files.paradigmthreat.net/index.json"
+  "browserIndexURL": "https://files.paradigmthreat.net/index.json"
 }
