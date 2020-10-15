@@ -3,7 +3,7 @@
 div.asset-image {
     margin: 0.5em;
 }
-div.asset-image > img {
+div.asset-image > a > img{
     max-height: 24em;
     max-width: 100%;
     vertical-align: top;
@@ -11,7 +11,7 @@ div.asset-image > img {
 }
 
 @media only screen and (max-width: 640px) {
-    div.asset-image > img {
+    div.asset-image > a > img {
         width: 86vw;
     }
 }

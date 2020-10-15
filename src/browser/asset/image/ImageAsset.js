@@ -17,7 +17,9 @@ export default class ImageAsset extends React.Component {
             className += ' odd';
         return (
             <div className={className}>
-                <img src={this.props.url} alt={this.props.url.split('/').pop()}/>
+                <a href={this.props.url} target="_blank">
+                    <img src={this.props.url} alt={this.props.url.split('/').pop()}/>
+                </a>
             </div>
         );
     }

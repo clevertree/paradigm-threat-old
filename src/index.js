@@ -31,8 +31,11 @@ document.addEventListener('click', function(e) {
     while(target && target.nodeName.toLowerCase() !== 'a') {
         target = target.parentNode;
     }
-    console.log("Click target: ", target);
-    if(target && target.nodeName.toLowerCase() === 'a') {
+    if(target
+        && target.nodeName.toLowerCase() === 'a'
+        && target.target !== '_blank') {
+        console.log("Click target: ", target);
+
         const url = new URL(target.href);
         if(url.origin !== window.location.origin) {
             target.setAttribute('target', '_blank');
@@ -44,7 +47,7 @@ document.addEventListener('click', function(e) {
             // Allow local navigation
         } else {
             e.preventDefault();
-            console.log('click', target, url);
+            // console.log('click', target, url);
             // let history = useHistory();
             refRouter.current.history.push(url.pathname);
             window.scroll({
