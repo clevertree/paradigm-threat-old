@@ -18,29 +18,11 @@ div.asset-image > a > img {
     }
 }
 @media only screen and (min-width: 640px) {
-    div.asset-image {
-        /*float: right;*/
-        /*clear: both;*/
-
-    }
-    div.asset-image + div.asset-image {
-        /*float: left;*/
-        /*clear: none;*/
-    }
-    div.asset-image + div.asset-image + div.asset-image {
-        /*float: right;*/
-    }
-    div.asset-image + div.asset-image + div.asset-image + div.asset-image {
-        /*clear: both;*/
-    }
     div.asset-image.even {
         float: right;
     }
     div.asset-image.odd {
         float: left;
-    }
-    div.asset-image.clear {
-        clear: both;
     }
 }
 

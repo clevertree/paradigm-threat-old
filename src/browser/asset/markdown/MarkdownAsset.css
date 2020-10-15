@@ -7,7 +7,6 @@ div.asset-markdown {
 }
 div.asset-markdown > p {
     margin: 0 2vw;
-    text-indent: 4px;
     /*max-width: 1000px;*/
 }
 

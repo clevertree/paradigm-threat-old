@@ -105,7 +105,7 @@ div.asui-page-container.theme-default a:not(:hover) {
 }
 @media only screen and (max-width: 640px) {
     .theme-default {
-        word-break: break-all;
+        word-break: break-word;
     }
 }
 
@@ -124,31 +124,12 @@ div.asui-page-container.theme-default a:not(:hover) {
 
 /** Page Paragraphs **/
 
-.theme-default div.asui-page-content > p {
+.theme-default div.asui-page-content p {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-indent: 12px;
     text-align: justify;
     padding: 0 1vw;
 }
-
-/** Page Images **/
-
-
-.theme-default div.asui-page-content > p > img,
-.theme-default div.asui-page-content > p > a > img {
-    display: flex;
-    max-width: 640px;
-    margin: 0 auto;
-}
-
-@media only screen and (max-width: 640px) {
-    .theme-default div.asui-page-content > p > img,
-    .theme-default div.asui-page-content > p > a > img {
-        width: 90vw;
-    }
-
-}
-
 
 
 /** Pre **/
