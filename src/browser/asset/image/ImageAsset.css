@@ -3,24 +3,44 @@
 div.asset-image {
     margin: 0.5em;
 }
-div.asset-image > a > img{
+div.asset-image > a > img {
     max-height: 24em;
-    max-width: 100%;
+    max-width: 24vw;
     vertical-align: top;
     margin: 1em;
 }
 
 @media only screen and (max-width: 640px) {
     div.asset-image > a > img {
-        width: 86vw;
+        display: block;
+        margin: auto;
+        max-width: 90vw;
     }
 }
 @media only screen and (min-width: 640px) {
-    div.asset-image:not(.odd) {
-        float: left;
+    div.asset-image {
+        /*float: right;*/
+        /*clear: both;*/
+
+    }
+    div.asset-image + div.asset-image {
+        /*float: left;*/
+        /*clear: none;*/
+    }
+    div.asset-image + div.asset-image + div.asset-image {
+        /*float: right;*/
+    }
+    div.asset-image + div.asset-image + div.asset-image + div.asset-image {
+        /*clear: both;*/
+    }
+    div.asset-image.even {
+        float: right;
     }
     div.asset-image.odd {
-        float: right;
+        float: left;
+    }
+    div.asset-image.clear {
+        clear: both;
     }
 }
 
