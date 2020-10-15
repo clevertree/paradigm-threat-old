@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import "./VideoAsset.css";
+
 export default class VideoAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
@@ -9,8 +11,11 @@ export default class VideoAsset extends React.Component {
 
     render() {
         return (
-            <div className="image-asset">
-                <img src={this.props.url}/>
+            <div className="asset-video">
+                <video controls>
+                    <source src={this.props.url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                </video>
             </div>
         );
     }

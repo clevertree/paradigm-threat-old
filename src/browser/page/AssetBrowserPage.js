@@ -28,7 +28,7 @@ export default class AssetBrowserPage extends React.Component {
     }
 
     render() {
-        console.log(this.constructor.name, this.props);
+        // console.log(this.constructor.name, this.props);
         return (
             <PageContainer {...this.props} {...this.state}>
                 <AssetBrowser location={this.props.location} onLoad={this.cb.onLoad} />

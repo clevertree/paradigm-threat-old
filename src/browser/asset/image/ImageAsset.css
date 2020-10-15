@@ -1,0 +1,26 @@
+/** Image Asset **/
+
+div.asset-image {
+    margin: 0.5em;
+}
+div.asset-image > img {
+    max-height: 24em;
+    max-width: 100%;
+    vertical-align: top;
+    margin: 1em;
+}
+
+@media only screen and (max-width: 640px) {
+    div.asset-image > img {
+        width: 86vw;
+    }
+}
+@media only screen and (min-width: 640px) {
+    div.asset-image:not(.odd) {
+        float: left;
+    }
+    div.asset-image.odd {
+        float: right;
+    }
+}
+

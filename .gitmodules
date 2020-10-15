@@ -1,0 +1,3 @@
+[submodule "public/files"]
+	path = public/files
+	url = ssh://ffga.me/var/www/paradigm-threat-files/.git

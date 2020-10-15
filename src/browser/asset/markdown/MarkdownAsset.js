@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactMarkdown from "react-markdown";
 
-import "./AssetTypes.css";
+import "./MarkdownAsset.css";
 
 export default class MarkdownAsset extends React.Component {
     /** Property validation **/

@@ -1,11 +1,11 @@
 import React from "react";
 
 import PropTypes from "prop-types";
-import ImageAsset from "./asset-type/ImageAsset";
-import MarkdownAsset from "./asset-type/MarkdownAsset";
-import VideoAsset from "./asset-type/VideoAsset";
-import PDFAsset from "./asset-type/PDFAsset";
-import UnknownAsset from "./asset-type/UnknownAsset";
+import ImageAsset from "./asset/image/ImageAsset";
+import MarkdownAsset from "./asset/markdown/MarkdownAsset";
+import VideoAsset from "./asset/video/VideoAsset";
+import PDFAsset from "./asset/pdf/PDFAsset";
+import UnknownAsset from "./asset/unknown/UnknownAsset";
 
 import {browserIndexURL} from "../config.json";
 
@@ -49,7 +49,7 @@ export default class AssetBrowser extends React.Component {
             <div className="asset-browser">
                 <a id="asset-browser-top" />
                 {this.renderIndexFile()}
-                {this.renderFiles()}
+                {this.renderAssets()}
                 {/*{this.renderDirectories()}*/}
                 <div className="bottom-text"
                     onClick={this.cb.scrollToTop}
@@ -80,10 +80,10 @@ export default class AssetBrowser extends React.Component {
     //     </div>;
     // }
 
-    renderFiles() {
+    renderAssets() {
         if(this.state.files.length === 0)
             return null;
-        return <div className="files">
+        return <div className="assets">
             {this.state.files.map((file, i) => {
                 const url = new URL('.' + file, browserIndexURL).toString();
                 return this.renderAsset(url, i);

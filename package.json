@@ -13,6 +13,7 @@
     "react-scripts": "3.4.3"
   },
   "scripts": {
+    "gen": "node src/scripts/gen.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

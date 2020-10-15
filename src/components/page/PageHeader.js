@@ -9,12 +9,13 @@ export default class PageHeader extends React.Component {
             onScroll: e => this.updateScrollPosition(e)
         }
         this.ref = {
-            // header: React.createRef(),
+            header: React.createRef(),
             headerImage: React.createRef(),
             // headerLinks: React.createRef(),
         }
         this.state = {
-            floating: false
+            floating: false,
+            height: 0
         }
     }
 
@@ -29,8 +30,16 @@ export default class PageHeader extends React.Component {
     render() {
         const links = this.props.links;
         return (
-            <div className={`asui-page-header${this.state.floating ? ' floating' : ''}`}>
-                <a href="/" className="image" ref={this.ref.headerImage}>{}</a>
+            <div
+                style={this.state.height ? {height: this.state.height + 'px'} : null}
+                ref={this.ref.header}
+                className={`asui-page-header${this.state.floating ? ' floating' : ''}`}>
+                <a
+                    ref={this.ref.headerImage}
+                    href="/"
+                    className="image">
+                    <div />
+                </a>
                 {links ? <div className="links">
                     {links.map(([href, title], i) => {
                         const props = {
@@ -49,13 +58,15 @@ export default class PageHeader extends React.Component {
     }
 
     updateScrollPosition(e) {
+        const header = this.ref.header.current;
         const headerImage = this.ref.headerImage.current;
         // const headerLinks = this.ref.headerLinks.current;
+        const headerHeight = header.getBoundingClientRect().height;
         const {top, height} = headerImage.getBoundingClientRect();
         const floating = top + height < 0;
         if(this.state.floating !== floating) {
             console.log('floating', floating, top + height, window.scrollY);
-            this.setState({floating})
+            this.setState({floating, height: floating ? headerHeight : 0})
         }
     }
 }

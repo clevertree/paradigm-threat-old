@@ -51,7 +51,7 @@ export default class AssetIndex  {
         }
 
         stats.files.sort();
-        console.log('stats', stats);
+        console.log('stats', stats.files, stats.indexStats, stats.indexFile);
         return stats;
     }
 

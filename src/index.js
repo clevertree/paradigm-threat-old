@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import ReactDOM from 'react-dom';
 import './index.css';
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from './server/serviceWorker';
 import AssetBrowserPage from "./browser/page/AssetBrowserPage";
 
 const refRouter = React.createRef();
@@ -27,13 +27,24 @@ ReactDOM.render(
 );
 
 document.addEventListener('click', function(e) {
-    if(e.target && e.target.nodeName.toLowerCase() === 'a') {
-        const url = new URL(e.target.href);
-        if(url.hash) {
+    let target = e.target;
+    while(target && target.nodeName.toLowerCase() !== 'a') {
+        target = target.parentNode;
+    }
+    console.log("Click target: ", target);
+    if(target && target.nodeName.toLowerCase() === 'a') {
+        const url = new URL(target.href);
+        if(url.origin !== window.location.origin) {
+            target.setAttribute('target', '_blank');
+            // Allow navigation
+        } else if(url.hash
+            || url.pathname.endsWith('.pdf')
+        ) {
 
+            // Allow local navigation
         } else {
             e.preventDefault();
-            console.log('click', e.target, url);
+            console.log('click', target, url);
             // let history = useHistory();
             refRouter.current.history.push(url.pathname);
             window.scroll({
