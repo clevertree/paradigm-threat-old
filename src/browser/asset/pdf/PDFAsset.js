@@ -14,7 +14,7 @@ export default class PDFAsset extends React.Component {
         return (
             <div className="asset-pdf">
                 <embed src={this.props.url}/>
-                <a href={this.props.url} target="_blank">{this.props.url.split('/').pop()}</a>
+                <a href={this.props.url} target="_blank" rel="noopener noreferrer">{this.props.url.split('/').pop()}</a>
             </div>
         );
     }

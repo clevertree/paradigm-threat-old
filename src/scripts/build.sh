@@ -9,4 +9,4 @@ cd $dir;
 rm "${dir}/public/files";
 react-scripts build;
 ln -s "${dir}/files" "${dir}/public/files"
-ln -s "${dir}/files" "${dir}/build/files"
+# ln -s "${dir}/files" "${dir}/build/files"

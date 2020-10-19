@@ -5,7 +5,7 @@ div.asset-image {
 }
 div.asset-image > a > img {
     max-height: 24em;
-    max-width: 24vw;
+    max-width: 36vw;
     vertical-align: top;
     margin: 1em;
 }

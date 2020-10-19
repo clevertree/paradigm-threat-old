@@ -18,7 +18,7 @@ export default class ImageAsset extends React.Component {
         //     className += ' clear';
         return (
             <div className={className}>
-                <a href={this.props.url} target="_blank">
+                <a href={this.props.url} target="_blank" rel="noopener noreferrer">
                     <img src={this.props.url} alt={this.props.url.split('/').pop()}/>
                 </a>
             </div>

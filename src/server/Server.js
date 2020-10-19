@@ -4,7 +4,8 @@ import path from "path";
 import {JSDOM} from "jsdom";
 
 const BUILD_INDEX = path.resolve(__dirname, '../../build');
-const BUILD_FILES = path.resolve(BUILD_INDEX, 'files');
+const BUILD_FILES = path.resolve(__dirname, '../../files');
+// const BUILD_FILES = path.resolve(BUILD_INDEX, 'files');
 
 
 export default class Server {
@@ -21,6 +22,7 @@ export default class Server {
         });
 
         app.use(express.static(BUILD_INDEX));
+        app.use(express.static(BUILD_FILES));
 
         const fileIndex = path.resolve(BUILD_INDEX, 'index.html');
         app.use((req, res) => {
@@ -30,10 +32,10 @@ export default class Server {
             if(fs.existsSync(fileStats)) {
                 statsJSON = JSON.parse(fs.readFileSync(fileStats, 'utf8'));
                 const DOM = new JSDOM(indexHTML);
-                updateMetaTags(DOM.window.document, statsJSON)
+                updateMetaTags(req, DOM.window.document, statsJSON)
                 indexHTML = DOM.serialize();
             }
-            console.log('404', req.path, fileStats, statsJSON);
+            // console.log('404', req.path, fileStats, statsJSON);
 
             res.send(indexHTML);
             // res.sendFile('index.html', {root: BUILD_FILES })
@@ -50,7 +52,7 @@ export default class Server {
 }
 
 
-function updateMetaTags(document, indexStats) {
+function updateMetaTags(req, document, indexStats) {
     if(indexStats && indexStats.meta) {
         for (const [key, value] of Object.entries(indexStats.meta)) {
             let paramName = 'name';

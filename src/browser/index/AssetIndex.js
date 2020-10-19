@@ -1,4 +1,6 @@
-import {browserIndexURL} from "../../config.json";
+import ServerConfig from "../../server/ServerConfig";
+console.log('ServerConfig', ServerConfig);
+const browserIndexURL = (new ServerConfig()).getIndexURL();
 
 let indexJSON = [];
 export default class AssetIndex  {
@@ -56,6 +58,7 @@ export default class AssetIndex  {
     }
 
     async getPathStats(statsPath) {
+
         const url = new URL('.' + statsPath, browserIndexURL).toString();
         const response = await fetch(url);
         const indexStats = await response.json();

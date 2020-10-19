@@ -6,11 +6,13 @@ import MarkdownAsset from "./asset/markdown/MarkdownAsset";
 import VideoAsset from "./asset/video/VideoAsset";
 import PDFAsset from "./asset/pdf/PDFAsset";
 import UnknownAsset from "./asset/unknown/UnknownAsset";
-
-import {browserIndexURL} from "../config.json";
+import AssetIndex from "./index/AssetIndex";
+import ServerConfig from "../server/ServerConfig";
 
 import "./AssetBrowser.css";
-import AssetIndex from "./index/AssetIndex";
+
+const browserIndexURL = (new ServerConfig()).getIndexURL();
+
 
 export default class AssetBrowser extends React.Component {
     /** Property validation **/
@@ -20,7 +22,7 @@ export default class AssetBrowser extends React.Component {
     
     constructor(props) {
         super(props);
-        console.log('props', props, browserIndexURL);
+        // console.log('props', props, browserIndexURL);
         this.state = {
             loading: true,
             indexFile: null,
