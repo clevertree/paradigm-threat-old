@@ -34,6 +34,9 @@ export default class Server {
                 const DOM = new JSDOM(indexHTML);
                 updateMetaTags(req, DOM.window.document, statsJSON)
                 indexHTML = DOM.serialize();
+                // console.log('File stats found: ', req.path, fileStats, statsJSON);
+            } else {
+                // console.log('File stats not found: ', req.path, fileStats);
             }
             // console.log('404', req.path, fileStats, statsJSON);
 

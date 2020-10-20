@@ -15,8 +15,8 @@
   },
   "scripts": {
     "gen": "node ./src/scripts/gen.js",
-    "build": "sh ./src/scripts/build.sh",
-    "build2": "react-scripts build",
+    "build2": "sh ./src/scripts/build.sh",
+    "build": "react-scripts build",
     "start": "react-scripts start",
     "start-server": "node -r esm ./src/scripts/server.js",
     "test": "react-scripts test",

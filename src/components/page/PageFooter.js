@@ -4,7 +4,7 @@ import "./assets/Page.css";
 import ServerConfig from "../../server/ServerConfig";
 
 const serverConfig = new ServerConfig();
-const siteJSONURL = serverConfig.getIndexURL('report.html');
+const siteJSONURL = serverConfig.getIndexURL('site/report.html');
 
 
 export default class PageFooter extends React.Component {
