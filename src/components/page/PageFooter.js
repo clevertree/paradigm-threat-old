@@ -1,6 +1,11 @@
 import * as React from "react";
 
 import "./assets/Page.css";
+import ServerConfig from "../../server/ServerConfig";
+
+const serverConfig = new ServerConfig();
+const siteJSONURL = serverConfig.getIndexURL('report.html');
+
 
 export default class PageFooter extends React.Component {
     render() {
@@ -18,7 +23,14 @@ export default class PageFooter extends React.Component {
                     } )}
                 </div> : null}
                 <div className="text">
-                    Created by <a href="https://github.com/clevertree/" target="_blank" rel="noopener noreferrer">Ari Asulin</a>
+                    <div className="text-created-by">
+                        Created by <a href="https://github.com/clevertree/" target="_blank" rel="noopener noreferrer">Ari Asulin</a>
+                    </div>
+                    {typeof this.props.hitCount !== "undefined" ? <div className="text-visitors">
+                        <a href={siteJSONURL} target="_blank" rel="noopener noreferrer">
+                            {this.props.hitCount} Visitors
+                        </a>
+                    </div> : null}
                 </div>
             </div>
         );
@@ -26,3 +38,4 @@ export default class PageFooter extends React.Component {
 
 
 }
+

@@ -49,7 +49,9 @@ export default class AssetBrowser extends React.Component {
     render() {
         return (
             <div className="asset-browser">
-                <a id="asset-browser-top" />
+                <a id="asset-browser-top" href="/" >
+                    <i aria-hidden="true"/>
+                </a>
                 {this.renderIndexFile()}
                 {this.renderAssets()}
                 {/*{this.renderDirectories()}*/}

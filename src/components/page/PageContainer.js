@@ -38,7 +38,7 @@ export default class PageContainer extends React.Component {
                 <PageContent>
                     {this.props.children}
                 </PageContent>
-                <PageFooter currentPath={currentPath} links={this.props.footerLinks}/>
+                <PageFooter currentPath={currentPath} links={this.props.footerLinks} hitCount={this.props.hitCount}/>
             </div>
         );
     }

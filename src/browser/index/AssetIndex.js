@@ -1,8 +1,9 @@
 import ServerConfig from "../../server/ServerConfig";
-console.log('ServerConfig', ServerConfig);
-const browserIndexURL = (new ServerConfig()).getIndexURL();
 
-let indexJSON = [];
+const serverConfig = new ServerConfig();
+const browserIndexURL = serverConfig.getIndexURL();
+const siteJSONURL = serverConfig.getIndexURL('site.json');
+
 export default class AssetIndex  {
 
     async getDirectories() {
@@ -75,10 +76,18 @@ export default class AssetIndex  {
         return indexStats;
     }
 
+    async getHitCounter() {
+        return (await indexSiteJSONPromise).hits;
+    }
+    
 }
 
 const indexJSONPromise = (async function() {
     const response = await fetch(browserIndexURL);
-    indexJSON = await response.json();
-    return indexJSON;
+    return await response.json();
+})();
+
+const indexSiteJSONPromise = (async function() {
+    const response = await fetch(siteJSONURL);
+    return await response.json();
 })();

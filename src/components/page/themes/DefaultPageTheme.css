@@ -55,7 +55,6 @@ div.asui-page-container.theme-default a:not(:hover) {
     background-size: contain;
 }
 
-.theme-default div.asui-page-header > div.text,
 .theme-default div.asui-page-footer > div.text {
     padding: 1vw;
 }

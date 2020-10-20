@@ -9,7 +9,8 @@ export default class AssetBrowserPage extends React.Component {
         super(props);
         this.state = {
             headerLinks: [],
-            footerLinks: []
+            footerLinks: [],
+            hitCount: 0
         };
         this.cb = {
             onLoad: state => this.onLoad(state)
@@ -65,7 +66,9 @@ export default class AssetBrowserPage extends React.Component {
             [directory, directory.substr(1)]
         )
         headerLinks.unshift(['/', 'home'])
-        this.setState({headerLinks});
+
+        const hitCount = await assetIndex.getHitCounter();
+        this.setState({headerLinks, hitCount});
 
         // Meta Tags
         document.title = ORIGINAL_TITLE;
