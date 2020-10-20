@@ -28,7 +28,12 @@ export default class PageHeader extends React.Component {
     }
 
     render() {
+        let currentPath = this.props.currentPath;
+        if(currentPath.endsWith('/'))
+            currentPath = currentPath.substr(0, currentPath.length - 1);
+        // console.log('currentPath', currentPath);
         const links = this.props.links;
+        const subLinks = this.props.subLinks;
         return (
             <div
                 style={this.state.height ? {height: this.state.height + 'px'} : null}
@@ -40,18 +45,32 @@ export default class PageHeader extends React.Component {
                     className="image">
                     <div />
                 </a>
-                {links ? <div className="links">
-                    {links.map(([href, title], i) => {
-                        const props = {
-                            href
-                        };
-                        if(this.props.currentPath === href)
-                            props.className = 'selected';
-                        if( /^https?:\/\//i.test(href))
-                            props.target = '_blank';
-                        return <a key={i} {...props}>{title}</a>
-                    } )}
-                </div> : null}
+                <div className="links">
+                    {links ? <div className="main">
+                        {links.map(([href, title], i) => {
+                            const props = {
+                                href
+                            };
+                            if(currentPath === href)
+                                props.className = 'selected';
+                            if( /^https?:\/\//i.test(href))
+                                props.target = '_blank';
+                            return <a key={i} {...props}>{title}</a>
+                        } )}
+                    </div> : null}
+                    {subLinks && subLinks.length > 0 ? <div className="sub">
+                        {subLinks.map(([href, title], i) => {
+                            const props = {
+                                href
+                            };
+                            if(currentPath === href)
+                                props.className = 'selected';
+                            if( /^https?:\/\//i.test(href))
+                                props.target = '_blank';
+                            return <a key={i} {...props}>{title}</a>
+                        } )}
+                    </div> : null}
+                </div>
             </div>
 
         );

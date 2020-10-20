@@ -2,12 +2,14 @@ import ServerConfig from "../../server/ServerConfig";
 
 const serverConfig = new ServerConfig();
 const browserIndexURL = serverConfig.getIndexURL();
-const siteJSONURL = serverConfig.getIndexURL('site.json');
+
+const FILE_INDEX_JSON = 'index.json';
+const FILE_SITE_JSON = 'site/site.json';
 
 export default class AssetIndex  {
 
     async getDirectories() {
-        const indexJSON = await indexJSONPromise;
+        const indexJSON = await this.fetchJSONFile(FILE_INDEX_JSON);
         const directories = [];
         for (const filePath of indexJSON) {
             const directory = filePath.split('/').slice(0, -1).join('/') //  relativeFilePath.split('/').shift();
@@ -16,13 +18,14 @@ export default class AssetIndex  {
             }
         }
         directories.sort();
+        // console.log('directories', directories);
         return directories;
     }
 
     async getPathFiles(currentPath='/') {
         if(currentPath.substr(-1, 1) !== '/')
             currentPath += '/';
-        const indexJSON = await indexJSONPromise;
+        const indexJSON = await this.fetchJSONFile(FILE_INDEX_JSON);
         const stats = {
             files: [],
             indexFile: null,
@@ -54,15 +57,15 @@ export default class AssetIndex  {
         }
 
         stats.files.sort();
-        console.log('stats', stats.files, stats.indexStats, stats.indexFile);
+        console.log('indexStats', stats);
         return stats;
     }
 
     async getPathStats(statsPath) {
-
-        const url = new URL('.' + statsPath, browserIndexURL).toString();
-        const response = await fetch(url);
-        const indexStats = await response.json();
+        // const url = new URL('.' + statsPath, browserIndexURL).toString();
+        // const response = await fetch(url);
+        // await response.json();
+        const indexStats = this.fetchJSONFile('.' + statsPath)
         if(indexStats && indexStats.meta) {
             for (const [key, value] of Object.entries(indexStats.meta)) {
                 switch(key) {
@@ -77,17 +80,25 @@ export default class AssetIndex  {
     }
 
     async getHitCounter() {
-        return (await indexSiteJSONPromise).hits;
+        return (await this.fetchJSONFile(FILE_SITE_JSON)).hits;
     }
-    
+
+    async fetchJSONFile(filePath) {
+        let promise;
+        if(recentPromises[filePath]) {
+            // console.log("Reusing promise: ", filePath);
+            promise = recentPromises[filePath];
+        } else {
+            const fileURL = serverConfig.getIndexURL(filePath);
+            const response = await fetch(fileURL);
+            promise = response.json();
+            recentPromises[filePath] = promise;
+        }
+        return await promise;
+    }
 }
 
-const indexJSONPromise = (async function() {
-    const response = await fetch(browserIndexURL);
-    return await response.json();
-})();
-
-const indexSiteJSONPromise = (async function() {
-    const response = await fetch(siteJSONURL);
-    return await response.json();
-})();
+let recentPromises = {}
+setInterval(function() {
+    recentPromises = {};
+}, 1000 * 30);

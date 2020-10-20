@@ -29,6 +29,7 @@ async function watch() {
     for await (const fileDirectory of getDirectories(PATH_FILES)) {
         console.log("Watching ", fileDirectory);
 
+        // eslint-disable-next-line no-loop-func
         fs.watch(fileDirectory, function (event, filename) {
             console.log(event, fileDirectory, filename);
             clearTimeout(watchTimeout);

@@ -34,7 +34,7 @@ export default class PageContainer extends React.Component {
 
         return (
             <div className={className}>
-                <PageHeader currentPath={currentPath} links={this.props.headerLinks}/>
+                <PageHeader currentPath={currentPath} links={this.props.headerLinks} subLinks={this.props.subHeaderLinks}/>
                 <PageContent>
                     {this.props.children}
                 </PageContent>

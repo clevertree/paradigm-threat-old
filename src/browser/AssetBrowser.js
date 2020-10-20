@@ -52,7 +52,6 @@ export default class AssetBrowser extends React.Component {
                 <a id="asset-browser-top" href="/" >
                     <i aria-hidden="true"/>
                 </a>
-                {this.renderIndexFile()}
                 {this.renderAssets()}
                 {/*{this.renderDirectories()}*/}
                 <div className="bottom-text"
@@ -85,6 +84,9 @@ export default class AssetBrowser extends React.Component {
     // }
 
     renderAssets() {
+        if(this.state.indexFile)
+            return this.renderIndexFile();
+
         if(this.state.files.length === 0)
             return null;
         return <div className="assets">
@@ -96,20 +98,25 @@ export default class AssetBrowser extends React.Component {
     }
 
     renderAsset(url, i=-1) {
+        const props = {
+            key: i,
+            i,
+            url
+        }
         switch(url.split('.').pop().toLowerCase()) {
             case 'jpg':
             case 'jpeg':
             case 'png':
-                return <ImageAsset url={url} i={i} />;
+                return <ImageAsset {...props} />;
             case 'md':
-                return <MarkdownAsset url={url} i={i} />;
+                return <MarkdownAsset {...props} />;
             case 'm4v':
             case 'mp4':
-                return <VideoAsset url={url} i={i} />;
+                return <VideoAsset {...props} />;
             case 'pdf':
-                return <PDFAsset url={url} i={i} />;
+                return <PDFAsset {...props} />;
             default:
-                return <UnknownAsset url={url} i={i} />;
+                return <UnknownAsset {...props} />;
         }
     }
 
