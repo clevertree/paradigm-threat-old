@@ -1,26 +1,29 @@
 
-/** Video Asset **/
+/** Image Asset **/
 
 div.asset-video {
     margin: 0.5em;
 }
 div.asset-video > video {
-    max-height: 24em;
-    max-width: 100%;
+    max-height: 20em;
+    max-width: 36vw;
     vertical-align: top;
     margin: 1em;
 }
 
 @media only screen and (max-width: 640px) {
     div.asset-video > video {
-        width: 86vw;
+        display: block;
+        margin: auto;
+        max-width: 90vw;
     }
 }
 @media only screen and (min-width: 640px) {
-    div.asset-video:not(.odd) {
+    div.asset-video.even {
         float: left;
     }
     div.asset-video.odd {
         float: right;
     }
 }
+

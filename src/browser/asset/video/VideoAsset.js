@@ -10,8 +10,11 @@ export default class VideoAsset extends React.Component {
     };
 
     render() {
+        let i = this.props.i || 0;
+        let className = 'asset-video';
+        className += [' even', ' odd'][i % 2];
         return (
-            <div className="asset-video">
+            <div className={className}>
                 <video controls>
                     <source src={this.props.url} type="video/mp4" />
                     Your browser does not support the video tag.
