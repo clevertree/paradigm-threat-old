@@ -124,6 +124,7 @@ function getDepth(directory) {
 
 function formatLink(directory) {
     let title = directory.substr(1);
+    title = title.split('/').pop();
     title = title.replace(/_+/g, ' ');
     // title = ucwords(title);
 

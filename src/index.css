@@ -7,6 +7,6 @@ body {
   /*-moz-osx-font-smoothing: grayscale;*/
 
   scroll-behavior: smooth;
-  overscroll-behavior-y: none;
+  /*overscroll-behavior-y: none;*/
 
 }
