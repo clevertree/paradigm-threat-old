@@ -51,7 +51,9 @@ export default class PageHeader extends React.Component {
                             const props = {
                                 href
                             };
-                            if(currentPath === href)
+                            if(currentPath === href
+                                || (currentPath.startsWith(href) && href !== '/'))
+                                // if(currentPath === href)
                                 props.className = 'selected';
                             if( /^https?:\/\//i.test(href))
                                 props.target = '_blank';
