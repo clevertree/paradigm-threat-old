@@ -10,6 +10,7 @@ const FILE_MATCH = ['.jpg', '.jpeg', '.png', '.md', '.m4v', '.mp4', '.pdf', 'sta
 let indexJSON = [];
 
 async function start() {
+    console.log("Starting file generation");
     try {
         indexJSON = JSON.parse(fs.readFileSync(PATH_INDEX_FILE, 'utf8'));
 
@@ -31,7 +32,7 @@ async function watch() {
 
         // eslint-disable-next-line no-loop-func
         fs.watch(fileDirectory, function (event, filename) {
-            console.log(event, fileDirectory, filename);
+            // console.log(event, fileDirectory, filename);
             clearTimeout(watchTimeout);
             watchTimeout = setTimeout(start, 500);
         });

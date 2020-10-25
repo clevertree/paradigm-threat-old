@@ -78,7 +78,7 @@ export default class AssetBrowserPage extends React.Component {
             // .filter(directory => hasSameParent(directory, currentPath))
             .map(formatLink);
 
-        headerLinks.unshift(['/', 'home'])
+        headerLinks.unshift(['/', '/'])
         // console.log('updateLinks', {directories, headerLinks, subHeaderLinks, currentPath, subHeaderPath, currentDepth, hitCount});
 
         this.setState({headerLinks, subHeaderLinks, hitCount});
