@@ -94,19 +94,16 @@ export default class MarkdownAsset extends React.Component {
                 .map(file => serverConfig.getURL(file))
                 .filter(url => this.usedImages.indexOf(url) === -1)
         console.log('processImageList', props, urlList);
-        return urlList.map(src => {
-            return <ImageAsset src={src} className="list"/>
-        }); //  <ImageAsset {...props} />;
+        return <div className="asset-list">
+            {urlList.map(src => {
+                return <ImageAsset src={src} className="list"/>
+            })}
+            </div>; //  <ImageAsset {...props} />;
     }
 
     processMetaTag(props) {
         // console.log('processMetaTag', props);
-        let paramName;
-        if(typeof props.name) {
-            paramName = props.name;
-        } else {
-            paramName = props.property;
-        }
+        let paramName = typeof props.property !== "undefined" ? 'property' : 'name';
         const key = props[paramName];
         const content = props.content;
 

@@ -25,7 +25,7 @@ export default class AssetIndex  {
     async getPathFiles(currentPath='/') {
         if(currentPath[0] === '/')
             currentPath = currentPath.substr(1);
-        if(currentPath.substr(-1, 1) !== '/')
+        if(currentPath && currentPath.substr(-1, 1) !== '/')
             currentPath += '/';
         const indexURL = serverConfig.getURL(FILE_INDEX_JSON);
         const indexJSON = await this.fetchJSONFile(indexURL);

@@ -26,3 +26,19 @@ div.asset-browser > div.directories {
 div.asset-browser > div.directories > a {
     display: block;
 }
+
+
+/** Asset List **/
+
+div.asset-browser > div.asset-list {
+    /*display: flex;*/
+    /*flex-wrap: wrap;*/
+    align-items: center;
+    /*justify-content: center;*/
+}
+
+div.asset-browser > div.asset-list > * {
+    /*padding: 0.4em;*/
+    /*max-width: 23vw;*/
+    /*display: inline-block;*/
+}

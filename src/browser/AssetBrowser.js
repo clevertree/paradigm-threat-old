@@ -89,7 +89,7 @@ export default class AssetBrowser extends React.Component {
 
         if(this.state.files.length === 0)
             return null;
-        return <div className="assets">
+        return <div className="asset-list">
             {this.state.files.map((file, i) => {
                 const url = serverConfig.getURL(file);
                 return this.renderAsset(url, i);
@@ -100,7 +100,7 @@ export default class AssetBrowser extends React.Component {
     renderAsset(src, i=-1) {
         const props = {
             key: i,
-            i,
+            className: 'list',
             src
         }
         switch(src.split('.').pop().toLowerCase()) {
