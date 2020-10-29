@@ -2,12 +2,14 @@
 
 div.asset-image {
     margin: 0.5em;
+    padding: 1em;
 }
+div.asset-image > a {
+}
+
 div.asset-image > a > img {
-    max-height: 20em;
-    max-width: 36vw;
+    width: 100%;
     vertical-align: top;
-    margin: 1em;
 }
 
 @media only screen and (max-width: 640px) {
@@ -15,14 +17,26 @@ div.asset-image > a > img {
         display: block;
         margin: auto;
         max-width: 90vw;
-    }
-}
-@media only screen and (min-width: 640px) {
-    div.asset-image.even {
-        float: left;
-    }
-    div.asset-image.odd {
-        float: right;
+        max-height: inherit;
     }
 }
 
+@media only screen and (min-width: 640px) {
+    div.asset-image.right {
+        max-width: 26vw;
+        float: right;
+    }
+    div.asset-image.left {
+        max-width: 26vw;
+        float: left;
+    }
+    div.asset-image.list {
+        max-width: 26vw;
+        float: left;
+    }
+    div.asset-image:not(.left):not(.right) {
+        max-width: 800px;
+        margin: auto;
+        /*clear: both;*/
+    }
+}

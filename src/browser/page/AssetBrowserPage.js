@@ -49,29 +49,27 @@ export default class AssetBrowserPage extends React.Component {
 
     async updateLinks() {
         const assetIndex = new AssetIndex();
-        const currentPath = this.props.location.pathname;
+        let currentPath = this.props.location.pathname;
         const directories = await assetIndex.getDirectories();
         const hitCount = await assetIndex.getHitCounter();
         const currentDepth = getDepth(currentPath);
-        let subHeaderPath = currentPath;
-        while(subHeaderPath.match(/\//g).length >= 2)
-            subHeaderPath = subHeaderPath.split('/').slice(0, -1).join('/');
+        let subHeaderPath = this.props.location.pathname;
+        subHeaderPath = subHeaderPath.split('/')[1];
+        // while(subHeaderPath.match(/\//g).length >= 2)
+        //     subHeaderPath = subHeaderPath.split('/').slice(0, -1).join('/');
 
-        // let parentPath = '/';
-        // if(currentPath.match(/\//g).length >= 2)
-        //     parentPath = currentPath.split('/').slice(0, -1).join('/');
         const headerLinks = directories
             .filter(directory => {
                 const depth = getDepth(directory);
-                return (depth < 2)
+                return (depth < 1)
             })
             .map(formatLink);
         const subHeaderLinks = directories
             .filter(directory => {
-                if(currentDepth === 0)
-                    return false;
+                // if(currentDepth === 0)
+                //     return false;
                 const depth = getDepth(directory);
-                if (depth < 2)
+                if (depth < 1)
                     return false;
                 return directory.startsWith(subHeaderPath)
             })
@@ -123,21 +121,22 @@ function getDepth(directory) {
 }
 
 function formatLink(directory) {
-    let title = directory.substr(1);
+    let title = directory; // .substr(1);
     title = title.split('/').pop();
     title = title.replace(/_+/g, ' ');
     // title = ucwords(title);
-
+    if(directory[0] !== '/')
+        directory = '/' + directory;
     return [directory, title];
 }
 
-function ucwords(str) {
-    str = str.toLowerCase();
-    return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
-        function(s){
-            return s.toUpperCase();
-        });
-}
+// function ucwords(str) {
+//     str = str.toLowerCase();
+//     return str.replace(/(^([a-zA-Z\p{M}]))|([ -][a-zA-Z\p{M}])/g,
+//         function(s){
+//             return s.toUpperCase();
+//         });
+// }
 
 
 

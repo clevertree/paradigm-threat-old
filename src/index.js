@@ -33,7 +33,7 @@ document.addEventListener('click', function(e) {
     if(target
         && target.nodeName.toLowerCase() === 'a'
         && target.target !== '_blank') {
-        console.log("Click target: ", target);
+        // console.log("Click target: ", target);
 
         const url = new URL(target.href);
         if(url.origin !== window.location.origin) {
@@ -57,7 +57,6 @@ document.addEventListener('click', function(e) {
         }
     }
 })
-
 
 
 // If you want your app to work offline and load faster, you can change

@@ -6,7 +6,7 @@ import "./VideoAsset.css";
 export default class VideoAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
-        url: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
     };
 
     render() {
@@ -16,7 +16,7 @@ export default class VideoAsset extends React.Component {
         return (
             <div className={className}>
                 <video controls>
-                    <source src={this.props.url} type="video/mp4" />
+                    <source {...this.props} type="video/mp4" />
                     Your browser does not support the video tag.
                 </video>
             </div>

@@ -3,27 +3,16 @@
 div.asset-markdown {
     display: block;
     margin: 0 auto;
+}
+
+div.asset-markdown > div > :not(div) {
+    margin-left: auto;
+    margin-right: auto;
     max-width: 1200px;
 }
-div.asset-markdown > p {
-    margin: 0 2vw;
-    /*max-width: 1000px;*/
-}
 
-
-div.asset-markdown img {
-    margin: 0.5em;
-}
-div.asset-markdown img {
-    max-width: 32vw;
-    vertical-align: top;
-    margin: 1em;
-}
-
-@media only screen and (max-width: 640px) {
-    div.asset-markdown img {
-        display: block;
-        margin: auto;
-        max-width: 90vw;
-    }
+div.asset-markdown > div > ul,
+div.asset-markdown > div > p {
+    margin: 0 auto;
+    max-width: 1160px;
 }

@@ -1,7 +1,6 @@
 import ServerConfig from "../../server/ServerConfig";
 
 const serverConfig = new ServerConfig();
-const browserIndexURL = serverConfig.getIndexURL();
 
 const FILE_INDEX_JSON = 'index.json';
 const FILE_SITE_JSON = 'site/site.json';
@@ -9,7 +8,8 @@ const FILE_SITE_JSON = 'site/site.json';
 export default class AssetIndex  {
 
     async getDirectories() {
-        const indexJSON = await this.fetchJSONFile(FILE_INDEX_JSON);
+        const indexURL = serverConfig.getURL(FILE_INDEX_JSON);
+        const indexJSON = await this.fetchJSONFile(indexURL);
         const directories = [];
         for (const filePath of indexJSON) {
             const directory = filePath.split('/').slice(0, -1).join('/') //  relativeFilePath.split('/').shift();
@@ -23,9 +23,12 @@ export default class AssetIndex  {
     }
 
     async getPathFiles(currentPath='/') {
+        if(currentPath[0] === '/')
+            currentPath = currentPath.substr(1);
         if(currentPath.substr(-1, 1) !== '/')
             currentPath += '/';
-        const indexJSON = await this.fetchJSONFile(FILE_INDEX_JSON);
+        const indexURL = serverConfig.getURL(FILE_INDEX_JSON);
+        const indexJSON = await this.fetchJSONFile(indexURL);
         const stats = {
             files: [],
             indexFile: null,
@@ -62,15 +65,13 @@ export default class AssetIndex  {
     }
 
     async getPathStats(statsPath) {
-        // const url = new URL('.' + statsPath, browserIndexURL).toString();
-        // const response = await fetch(url);
-        // await response.json();
-        const indexStats = this.fetchJSONFile('.' + statsPath)
+        const statsURL = serverConfig.getURL(statsPath);
+        const indexStats = this.fetchJSONFile(statsURL)
         if(indexStats && indexStats.meta) {
             for (const [key, value] of Object.entries(indexStats.meta)) {
                 switch(key) {
                     case 'og:image':
-                        indexStats.meta[key] = new URL('.' + value, browserIndexURL).toString();
+                        indexStats.meta[key] = serverConfig.getURL(value);
                         break;
                     default:
                 }
@@ -80,19 +81,19 @@ export default class AssetIndex  {
     }
 
     async getHitCounter() {
-        return (await this.fetchJSONFile(FILE_SITE_JSON)).hits;
+        const siteJSONURL = serverConfig.getURL(FILE_SITE_JSON);
+        return (await this.fetchJSONFile(siteJSONURL)).hits;
     }
 
-    async fetchJSONFile(filePath) {
+    async fetchJSONFile(fileURL) {
         let promise;
-        if(recentPromises[filePath]) {
-            // console.log("Reusing promise: ", filePath);
-            promise = recentPromises[filePath];
+        if(recentPromises[fileURL]) {
+            // console.log("Reusing promise: ", fileURL);
+            promise = recentPromises[fileURL];
         } else {
-            const fileURL = serverConfig.getIndexURL(filePath);
-            const response = await fetch(fileURL);
-            promise = response.json();
-            recentPromises[filePath] = promise;
+            // console.log("Fetching: ", fileURL);
+            promise = fetchJSON(fileURL);
+            recentPromises[fileURL] = promise;
         }
         return await promise;
     }
@@ -102,3 +103,8 @@ let recentPromises = {}
 setInterval(function() {
     recentPromises = {};
 }, 1000 * 30);
+
+async function fetchJSON(url) {
+    const response = await fetch(url);
+    return await response.json();
+}

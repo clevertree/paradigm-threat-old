@@ -4,13 +4,13 @@ import PropTypes from "prop-types";
 export default class UnknownAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
-        url: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
     };
 
     render() {
         return (
             <div className="image-asset">
-                <img src={this.props.url} alt={this.props.url.split('/').pop()}/>
+                <img src={this.props.src} alt={this.props.src.split('/').pop()}/>
             </div>
         );
     }

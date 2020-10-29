@@ -6,20 +6,24 @@ import "./ImageAsset.css";
 export default class ImageAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
-        url: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
         i: PropTypes.number
     };
 
     render() {
-        let i = this.props.i || 0;
+        // let i = this.props.i || 0;
         let className = 'asset-image';
-        className += [' even', ' odd'][i % 2];
+        if(this.props.className)
+            className += ' ' + this.props.className;
+        // className += [' even', ' odd'][i % 2];
         // if(i % 4 === 0)
         //     className += ' clear';
+        const altText = this.props.alt || this.props.src.split('/').pop();
+
         return (
             <div className={className}>
-                <a href={this.props.url} target="_blank" rel="noopener noreferrer">
-                    <img src={this.props.url} alt={this.props.url.split('/').pop()}/>
+                <a href={this.props.href || this.props.src} target="_blank" rel="noopener noreferrer">
+                    <img src={this.props.src} alt={altText}/>
                 </a>
             </div>
         );

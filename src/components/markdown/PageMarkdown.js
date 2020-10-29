@@ -1,7 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
 import PageContainer from "../page/PageContainer";
-import Markdown from "./Markdown";
+import Markdown from 'markdown-to-jsx';
 
 
 export default class PageMarkdown extends React.Component {
@@ -29,9 +29,7 @@ export default class PageMarkdown extends React.Component {
     render() {
         return (
             <PageContainer {...this.props}>
-                <Markdown
-                    // updateLinkTargets={this.props.updateLinkTargets}
-                    trim={false}>
+                <Markdown>
                     {this.state.content || "Loading " + this.props.file}
                 </Markdown>
             </PageContainer>

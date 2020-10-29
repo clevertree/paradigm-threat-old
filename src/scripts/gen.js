@@ -4,7 +4,9 @@ const path = require('path');
 const { readdir } = fs.promises;
 
 const PATH_FILES = path.resolve(__dirname, '../../public/files');
+const PATH_SRC = path.resolve(__dirname, '../../src');
 const PATH_INDEX_FILE = PATH_FILES + '/index.json';
+const PATH_TOUCH_FILE = PATH_SRC + '/touch.js';
 const PATH_IGNORE = ['.', '..', '.git', '.idea', 'bower_components', 'node_modules', 'www', 'platforms'];
 const FILE_MATCH = ['.jpg', '.jpeg', '.png', '.md', '.m4v', '.mp4', '.pdf', 'stats.json'];
 let indexJSON = [];
@@ -22,6 +24,10 @@ async function start() {
     await processAll();
 
     fs.writeFileSync(PATH_INDEX_FILE, JSON.stringify(indexJSON, null, "\t"), 'utf8');
+    fs.writeFileSync(PATH_TOUCH_FILE, `
+    const Touch = ${new Date().getTime()};
+    export default Touch;
+`);
 }
 
 let watchTimeout = null;
@@ -49,7 +55,7 @@ async function processAll() {
         }
         if(!matched)
             continue;
-        let relativeFilePath = filePath.replace(PATH_FILES, '');
+        let relativeFilePath = filePath.replace(PATH_FILES + '/', '');
         // relativeFilePath = relativeFilePath.substr(2);
         indexJSON.push(relativeFilePath);
         // console.log(relativeFilePath);

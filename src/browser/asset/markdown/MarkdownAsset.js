@@ -1,13 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactMarkdown from "react-markdown";
+
+import Markdown from 'markdown-to-jsx';
 
 import "./MarkdownAsset.css";
+import ImageAsset from "../image/ImageAsset";
+import Touch from './../../../touch.js';
+import ServerConfig from "../../../server/ServerConfig";
+
+const serverConfig = new ServerConfig();
+
 
 export default class MarkdownAsset extends React.Component {
     /** Property validation **/
     static propTypes = {
-        url: PropTypes.string.isRequired,
+        src: PropTypes.string.isRequired,
     };
 
     constructor(props) {
@@ -16,6 +23,17 @@ export default class MarkdownAsset extends React.Component {
             loading: true,
             source: null
         }
+        this.usedImages = [];
+        this.options={
+            overrides: {
+                img: (props) => this.processImage(props),
+                imglist: (props) => this.processImageList(props),
+                meta: (props) => this.processMetaTag(props),
+            },
+        };
+        // this.renderers = ReactMarkdown.Renderers = {
+        //     nextImage: (url) => this.getNextImage(url),
+        // };
     }
 
     componentDidMount() {
@@ -23,16 +41,22 @@ export default class MarkdownAsset extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if(this.props.url !== prevProps.url)
+        console.log(this.constructor.name, this.props.src, prevProps.src);
+        if(this.props.src !== prevProps.src)
             this.loadAsset()
     }
 
     render() {
+        let className = 'asset-markdown ' + Touch;
+
+        this.usedImages = [];
         return (
-            <div className="asset-markdown">
-                {this.state.loading ? `Loading ${this.props.url}` : <ReactMarkdown
+            <div className={className}>
+                {this.state.loading ? `Loading ${this.props.src}` : <Markdown
                     escapeHtml={false}
-                    source={this.state.source}
+                    children={this.state.source}
+                    options={this.options}
+                    // renderers={this.renderers}
                 />}
             </div>
         );
@@ -41,13 +65,70 @@ export default class MarkdownAsset extends React.Component {
     async loadAsset() {
         this.setState({
             loading: true,
-            source: `Loading: [${this.props.url}](${this.props.url})`
+            source: `Loading: [${this.props.src}](${this.props.src})`
         });
-        const response = await fetch(this.props.url);
+        const response = await fetch(this.props.src);
         const source = await response.text();
         this.setState({
             loading: false,
             source
         });
     }
+
+    processImage(props) {
+        let src = props.src;
+        if(src) {
+            src = serverConfig.getURL(src);
+            if(this.usedImages.indexOf(src) === -1)
+                this.usedImages.push(src);
+        }
+        // console.log('processImage', props);
+        return <ImageAsset {...props} src={src}/>;
+    }
+
+    processImageList(props) {
+        if(!this.props.files)
+            return null;
+        const urlList =
+            this.props.files
+                .map(file => serverConfig.getURL(file))
+                .filter(url => this.usedImages.indexOf(url) === -1)
+        console.log('processImageList', props, urlList);
+        return urlList.map(src => {
+            return <ImageAsset src={src} className="list"/>
+        }); //  <ImageAsset {...props} />;
+    }
+
+    processMetaTag(props) {
+        // console.log('processMetaTag', props);
+        let paramName;
+        if(typeof props.name) {
+            paramName = props.name;
+        } else {
+            paramName = props.property;
+        }
+        const key = props[paramName];
+        const content = props.content;
+
+        // TODO: fix meta tags on navigation
+        switch(key) {
+            case 'title':
+                document.title = content;
+                break;
+            default:
+                let elm = document.head.querySelector(`meta[${paramName}="${key}"]`)
+                if(!elm) {
+                    elm = document.createElement('meta');
+                    elm[paramName] = key;
+                    document.head.appendChild(elm);
+                }
+                elm.content = content;
+                break;
+        }
+        return null; //  <ImageAsset {...props} />;
+    }
+
+
 }
+
+

@@ -11,7 +11,7 @@ import ServerConfig from "../server/ServerConfig";
 
 import "./AssetBrowser.css";
 
-const browserIndexURL = (new ServerConfig()).getIndexURL();
+const serverConfig = new ServerConfig();
 
 
 export default class AssetBrowser extends React.Component {
@@ -67,9 +67,9 @@ export default class AssetBrowser extends React.Component {
     renderIndexFile() {
         if(!this.state.indexFile)
             return null;
-        const url = new URL('.' + this.state.indexFile, browserIndexURL).toString();
+        const src = serverConfig.getURL(this.state.indexFile);
         return <div className="index-file">
-            {this.renderAsset(url)}
+            <MarkdownAsset src={src} files={this.state.files} />
         </div>;
     }
 
@@ -91,19 +91,19 @@ export default class AssetBrowser extends React.Component {
             return null;
         return <div className="assets">
             {this.state.files.map((file, i) => {
-                const url = new URL('.' + file, browserIndexURL).toString();
+                const url = serverConfig.getURL(file);
                 return this.renderAsset(url, i);
             })}
         </div>;
     }
 
-    renderAsset(url, i=-1) {
+    renderAsset(src, i=-1) {
         const props = {
             key: i,
             i,
-            url
+            src
         }
-        switch(url.split('.').pop().toLowerCase()) {
+        switch(src.split('.').pop().toLowerCase()) {
             case 'jpg':
             case 'jpeg':
             case 'png':
