@@ -83,7 +83,7 @@ function updateMetaTagsMD(req, indexHTML, markdownHTML) {
     const documentMD = MDDOM.window.document;
 
     const metaList = documentMD.querySelectorAll('meta');
-    console.log(metaList);
+    // console.log(metaList);
 
     for(const metaTag of metaList) {
         let paramName = metaTag.hasAttribute('property') ? 'property' : 'name';

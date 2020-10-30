@@ -11,7 +11,7 @@ div.asset-image > a {
 }
 
 div.asset-image > a > img {
-    max-width: 60vw;
+    max-width: 45vw;
     /*width: 100%;*/
     vertical-align: top;
     /*object-fit: cover;*/
@@ -54,9 +54,22 @@ div.asset-image > a > img {
 
 @media only screen and (min-width: 800px) {
     div.asset-image.left > a > img,
-    div.asset-image.right > a > img,
-    div.asset-image.list > a > img {
-        max-width: 36vw;
+    div.asset-image.right > a > img {
+        max-width: 24vw;
         max-height: 36vw;
+    }
+    div.asset-image.list > a > img {
+        max-width: 30vw;
+        max-height: 36vw;
+    }
+}
+@media only screen and (min-width: 1600px) {
+    div.asset-image.left > a > img,
+    div.asset-image.right > a > img {
+        max-width: 28em;
+    }
+    div.asset-image.list > a > img {
+        max-width: 28em;
+        max-height: 20em;
     }
 }

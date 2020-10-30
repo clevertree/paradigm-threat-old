@@ -8,7 +8,6 @@ div.asset-video > video {
     max-height: 20em;
     max-width: 36vw;
     vertical-align: top;
-    margin: 1em;
 }
 
 @media only screen and (max-width: 640px) {

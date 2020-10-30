@@ -46,8 +46,8 @@ div.asui-page-container.theme-default a:not(:hover) {
     flex-wrap: wrap;
     justify-content: center;
     background-color: #999;
-    padding: 0.2vw;
-    font-size: 4vw;
+    padding: 2px;
+    font-size: 18px;
 }
 .theme-default div.asui-page-header > div.links > div.main {
     background-color: #888;
@@ -81,7 +81,7 @@ div.asui-page-container.theme-default a:not(:hover) {
 @media only screen and (min-width: 640px) {
     .theme-default div.asui-page-header > div.links > div,
     .theme-default div.asui-page-footer > div.links > div {
-        font-size: 18px;
+        /*font-size: 18px;*/
     }
 }
 @media only screen and (max-width: 640px) {
