@@ -11,17 +11,22 @@ div.asset-image > a {
 }
 
 div.asset-image > a > img {
-    max-width: 45vw;
+    max-width: 900px;
     /*width: 100%;*/
     vertical-align: top;
     /*object-fit: cover;*/
 }
+@media only screen and (max-width: 1000px) {
+    div.asset-image > a > img {
+        max-width: 90vw;
+    }
+}
+
 
 @media only screen and (max-width: 640px) {
     div.asset-image > a > img {
         display: block;
         margin: auto;
-        max-width: 90vw;
         max-height: inherit;
     }
 }
