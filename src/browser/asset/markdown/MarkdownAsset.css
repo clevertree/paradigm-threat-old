@@ -16,3 +16,10 @@ div.asset-markdown > div > p {
     margin: 0 auto;
     max-width: 1160px;
 }
+
+div.asset-markdown > div > pre {
+    background: #AAA;
+    padding: 1em;
+    border-radius: 4px;
+    white-space: pre-wrap;
+}

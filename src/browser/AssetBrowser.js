@@ -10,6 +10,7 @@ import AssetIndex from "./index/AssetIndex";
 import ServerConfig from "../server/ServerConfig";
 
 import "./AssetBrowser.css";
+import AssetList from "./asset/list/AssetList";
 
 const serverConfig = new ServerConfig();
 
@@ -89,12 +90,12 @@ export default class AssetBrowser extends React.Component {
 
         if(this.state.files.length === 0)
             return null;
-        return <div className="asset-list">
+        return <AssetList className="spread">
             {this.state.files.map((file, i) => {
                 const url = serverConfig.getURL(file);
                 return this.renderAsset(url, i);
             })}
-        </div>;
+        </AssetList>;
     }
 
     renderAsset(src, i=-1) {

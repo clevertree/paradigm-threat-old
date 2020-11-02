@@ -7,6 +7,7 @@ import "./MarkdownAsset.css";
 import ImageAsset from "../image/ImageAsset";
 import Touch from './../../../touch.js';
 import ServerConfig from "../../../server/ServerConfig";
+import AssetList from "../list/AssetList";
 
 const serverConfig = new ServerConfig();
 
@@ -27,7 +28,7 @@ export default class MarkdownAsset extends React.Component {
         this.options={
             overrides: {
                 img: (props) => this.processImage(props),
-                imglist: (props) => this.processImageList(props),
+                assetList: (props) => this.processAssetList(props),
                 meta: (props) => this.processMetaTag(props),
             },
         };
@@ -86,7 +87,13 @@ export default class MarkdownAsset extends React.Component {
         return <ImageAsset {...props} src={src}/>;
     }
 
-    processImageList(props) {
+    processAssetList(props) {
+        return <AssetList
+            {...props}
+            />;
+    }
+
+    processImageListExtra(props) {
         if(!this.props.files)
             return null;
         const urlList =
@@ -98,7 +105,7 @@ export default class MarkdownAsset extends React.Component {
             {urlList.map(src => {
                 return <ImageAsset src={src} className="list"/>
             })}
-            </div>; //  <ImageAsset {...props} />;
+        </div>; //  <ImageAsset {...props} />;
     }
 
     processMetaTag(props) {
