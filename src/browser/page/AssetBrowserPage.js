@@ -52,7 +52,7 @@ export default class AssetBrowserPage extends React.Component {
         let currentPath = this.props.location.pathname;
         const directories = await assetIndex.getDirectories();
         const hitCount = await assetIndex.getHitCounter();
-        const currentDepth = getDepth(currentPath);
+        // const currentDepth = getDepth(currentPath);
         let subHeaderPath = this.props.location.pathname;
         subHeaderPath = subHeaderPath.split('/')[1];
         // while(subHeaderPath.match(/\//g).length >= 2)

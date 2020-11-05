@@ -44,7 +44,7 @@ export default class MarkdownAsset extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.constructor.name, this.props.src, prevProps.src);
+        // console.log(this.constructor.name, this.props.src, prevProps.src);
         if(this.props.src !== prevProps.src)
             this.loadAsset()
     }
@@ -102,7 +102,7 @@ export default class MarkdownAsset extends React.Component {
             this.props.files
                 .map(file => serverConfig.getURL(file))
                 .filter(url => this.usedImages.indexOf(url) === -1)
-        console.log('processImageList', props, urlList);
+        // console.log('processImageList', props, urlList);
         return <div className="asset-list">
             {urlList.map(src => {
                 return <ImageAsset src={src} className="list"/>

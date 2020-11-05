@@ -7,9 +7,11 @@ div.asset-browser > div.bottom-text {
     display: block;
     text-align: center;
     clear: both;
+    padding: 1em;
 }
 div.asset-browser > div.bottom-text:hover {
     color: #3333AA;
+    background-color: #33A3;
 }
 
 /** Files **/

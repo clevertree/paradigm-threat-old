@@ -26,14 +26,17 @@ export default class PageFooter extends React.Component {
                     </div> : null}
                 </div>
                 <div className="text">
-                    <div className="text-created-by">
-                        Created by <a href="https://github.com/clevertree/" target="_blank" rel="noopener noreferrer">Ari Asulin</a>
+                    <div className="text-rss">
+                        <a href="https://files.paradigmthreat.net/rss.xml" target="_blank" rel="noopener noreferrer">RSS Feed</a>
                     </div>
                     {typeof this.props.hitCount !== "undefined" ? <div className="text-visitors">
                         <a href={siteJSONURL} target="_blank" rel="noopener noreferrer">
                             {this.props.hitCount} Visitors
                         </a>
                     </div> : null}
+                    <div className="text-created-by">
+                        Created by <a href="https://github.com/clevertree/" target="_blank" rel="noopener noreferrer">Ari Asulin</a>
+                    </div>
                 </div>
             </div>
         );
