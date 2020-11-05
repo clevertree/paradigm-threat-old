@@ -3,11 +3,13 @@ import PropTypes from "prop-types";
 
 import Markdown from 'markdown-to-jsx';
 
-import "./MarkdownAsset.css";
 import ImageAsset from "../image/ImageAsset";
 import Touch from './../../../touch.js';
 import ServerConfig from "../../../server/ServerConfig";
 import AssetList from "../list/AssetList";
+
+import "./MarkdownAsset.css";
+
 
 const serverConfig = new ServerConfig();
 

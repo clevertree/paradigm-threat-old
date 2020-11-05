@@ -1,7 +1,7 @@
 /** Image Asset **/
 
 div.asset-list {
-    margin: 0.5em;
+    /*margin: 0.5em;*/
     /*padding: 1em;*/
     /*max-width: 800px;*/
     /*max-height: 600px;*/
@@ -18,29 +18,48 @@ div.asset-list.spread {
 
 
 
-
 @media only screen and (min-width: 640px) {
+
+    /** Float **/
 
     div.asset-list.right {
         float: right;
-        max-width: 45vw;
+        max-width: 24vw;
+        padding: 0.5em;
     }
     div.asset-list.left {
         float: left;
-        max-width: 45vw;
+        max-width: 24vw;
+        padding: 0.5em;
     }
-    div.asset-list.spread > * {
-        float: left;
-    }
-    div.asset-list.spread > *:nth-child(2n) {
-        float: right;
+    div.asset-list.left > img.asset-image,
+    div.asset-list.right > img.asset-image {
+        width: 100%;
     }
 
-    div.asset-list.spread > div.asset-image {
-        max-width: 44vw;
+
+    div.asset-list > img.asset-image {
+        /*width: 100%;*/
+        padding-bottom: 1em;
     }
-    div.asset-list.spread > div.asset-markdown {
-        /*flex-shrink: 1*/
+    div.asset-list > img.asset-image:last-child {
+        padding-bottom: inherit;
+    }
+    div.asset-list.spread {
+        /*display: flex;*/
+        /*flex-wrap: wrap;*/
+    }
+
+    div.asset-list.spread > * {
+        float: left;
+        padding: 0.5em;
+    }
+    div.asset-list.spread > *:nth-child(2n) {
+        /*float: right;*/
+    }
+
+    div.asset-list.spread > img.asset-image {
+        /*max-width: 44vw;*/
     }
 }
 
@@ -48,18 +67,23 @@ div.asset-list.spread {
 @media only screen and (min-width: 800px) {
     div.asset-list.left,
     div.asset-list.right {
-        max-width: 24vw;
+    }
+    div.asset-list.spread > img.asset-image {
+        max-height: 30vw;
+        /*max-width: 30vw;*/
     }
 }
-@media only screen and (min-width: 1600px) {
+
+@media only screen and (min-width: 1800px) {
     div.asset-list.left,
     div.asset-list.right {
-        max-width: 28em;
+        max-width: 30em;
     }
     div.asset-list.list {
         max-width: 28em;
     }
-    div.asset-list.spread > div.asset-image {
-        max-width: 24em;
+    div.asset-list.spread > img.asset-image {
+        max-height: 28em;
+        /*max-width: 48em;*/
     }
 }
