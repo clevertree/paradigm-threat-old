@@ -56,7 +56,6 @@ export default class MarkdownAsset extends React.Component {
         return (
             <div className={className}>
                 {this.state.loading ? `Loading ${this.props.src}` : <Markdown
-                    escapeHtml={false}
                     children={this.state.source}
                     options={this.options}
                     // renderers={this.renderers}

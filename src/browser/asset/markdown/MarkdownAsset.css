@@ -25,7 +25,9 @@ div.asset-markdown > div > h1, div.asset-markdown > div > h2, div.asset-markdown
     max-width: 1200px;
 }
 
-div.asset-markdown > div > h1:first-of-type {
+div.asset-markdown > div > h1:first-of-type,
+div.asset-markdown > div > h2:first-of-type,
+div.asset-markdown > div > h3:first-of-type {
     margin-top: 0;
     padding-top: 0.5em;
 }

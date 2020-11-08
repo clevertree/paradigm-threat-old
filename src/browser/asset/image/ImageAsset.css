@@ -47,7 +47,7 @@ div.asset-image-fullscreen {
 
 div.asset-image-fullscreen > img {
     max-width: 80vw;
-    max-height: 80vw;
+    /*max-height: 80vw;*/
     object-fit: contain;
 }
 

@@ -49,7 +49,7 @@ export default class AssetBrowserPage extends React.Component {
 
     async updateLinks() {
         const assetIndex = new AssetIndex();
-        let currentPath = this.props.location.pathname;
+        // let currentPath = this.props.location.pathname;
         const directories = await assetIndex.getDirectories();
         const hitCount = await assetIndex.getHitCounter();
         // const currentDepth = getDepth(currentPath);
