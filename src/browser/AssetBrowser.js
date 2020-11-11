@@ -108,6 +108,7 @@ export default class AssetBrowser extends React.Component {
             case 'jpg':
             case 'jpeg':
             case 'png':
+            case 'gif':
                 return <ImageAsset {...props} />;
             case 'md':
                 return <MarkdownAsset {...props} />;

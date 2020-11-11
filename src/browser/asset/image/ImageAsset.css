@@ -12,11 +12,12 @@ img.asset-image {
 
 @media only screen and (max-width: 1800px) {
     img.asset-image {
-        max-width: 40vw;
+        /*max-width: 90vw;*/
+        /*max-width: 40vw;*/
     }
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: 1000px) {
     img.asset-image {
         max-width: 90vw;
         margin-top: 0.5em;
