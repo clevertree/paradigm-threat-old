@@ -34,17 +34,17 @@ div.asset-list.spread {
         padding: 0.5em;
         margin-right: 1em;
     }
-    div.asset-list.left > img.asset-image,
-    div.asset-list.right > img.asset-image {
+    div.asset-list.left > .asset,
+    div.asset-list.right > .asset {
         width: 100%;
     }
 
 
-    div.asset-list > img.asset-image {
+    div.asset-list > .asset {
         /*width: 100%;*/
         padding-bottom: 1em;
     }
-    div.asset-list > img.asset-image:last-child {
+    div.asset-list > .asset:last-child {
         padding-bottom: inherit;
     }
     div.asset-list.spread {
@@ -60,7 +60,7 @@ div.asset-list.spread {
         /*float: right;*/
     }
 
-    div.asset-list.spread > img.asset-image {
+    div.asset-list.spread > .asset {
         /*max-width: 44vw;*/
     }
 }
@@ -70,8 +70,8 @@ div.asset-list.spread {
     div.asset-list.left,
     div.asset-list.right {
     }
-    div.asset-list.spread > img.asset-image {
-        max-height: 30vw;
+    div.asset-list.spread > .asset {
+        height: 24vw;
         /*max-width: 30vw;*/
     }
 }
@@ -84,8 +84,8 @@ div.asset-list.spread {
     div.asset-list.list {
         max-width: 28em;
     }
-    div.asset-list.spread > img.asset-image {
-        max-height: 28em;
+    div.asset-list.spread > .asset {
+        height: 24em;
         /*max-width: 48em;*/
     }
 }

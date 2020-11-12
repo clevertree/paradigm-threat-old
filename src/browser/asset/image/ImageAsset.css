@@ -10,14 +10,17 @@ img.asset-image {
 }
 
 
-@media only screen and (max-width: 1800px) {
+@media only screen and (max-width: 1200px) {
     img.asset-image {
         /*max-width: 90vw;*/
         /*max-width: 40vw;*/
     }
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
+    img.asset-image:not(.list) {
+        clear: both;
+    }
     img.asset-image {
         max-width: 90vw;
         margin-top: 0.5em;
@@ -50,6 +53,8 @@ div.asset-image-fullscreen > img {
     max-width: 80vw;
     /*max-height: 80vw;*/
     object-fit: contain;
+    padding: 1em;
+    background-color: #000;
 }
 
 @keyframes fadeIn {

@@ -31,6 +31,7 @@ export default class MarkdownAsset extends React.Component {
             overrides: {
                 img: (props) => this.processImage(props),
                 assetList: (props) => this.processAssetList(props),
+                assetListExtra: (props) => this.processAssetListExtra(props),
                 meta: (props) => this.processMetaTag(props),
             },
         };
@@ -91,10 +92,10 @@ export default class MarkdownAsset extends React.Component {
     processAssetList(props) {
         return <AssetList
             {...props}
-            />;
+        />;
     }
 
-    processImageListExtra(props) {
+    processAssetListExtra(props) {
         if(!this.props.files)
             return null;
         const urlList =
@@ -102,11 +103,11 @@ export default class MarkdownAsset extends React.Component {
                 .map(file => serverConfig.getURL(file))
                 .filter(url => this.usedImages.indexOf(url) === -1)
         // console.log('processImageList', props, urlList);
-        return <div className="asset-list">
-            {urlList.map(src => {
-                return <ImageAsset src={src} className="list"/>
+        return <AssetList className="spread">
+            {urlList.map((src, i) => {
+                return <ImageAsset key={i} src={src} className="list"/>
             })}
-        </div>; //  <ImageAsset {...props} />;
+        </AssetList>; //  <ImageAsset {...props} />;
     }
 
     processMetaTag(props) {

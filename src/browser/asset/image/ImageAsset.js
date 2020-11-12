@@ -24,7 +24,7 @@ export default class ImageAsset extends React.Component {
 
     render() {
         // let i = this.props.i || 0;
-        let className = 'asset-image';
+        let className = 'asset-image asset';
         if(this.props.className)
             className += ' ' + this.props.className;
         // if(this.state.fullscreen)
