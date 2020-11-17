@@ -10,22 +10,20 @@ img.asset-image {
 }
 
 
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 1900px) {
     img.asset-image {
-        /*max-width: 90vw;*/
-        /*max-width: 40vw;*/
+        /*clear: both;*/
+        max-width: 42vw;
+        /*margin-top: 0.5em;*/
     }
 }
 
-@media only screen and (max-width: 1200px) {
-    img.asset-image:not(.list) {
-        clear: both;
-    }
+@media only screen and (max-width: 640px) {
     img.asset-image {
         max-width: 90vw;
-        margin-top: 0.5em;
     }
 }
+
 
 /** Fullscreen **/
 

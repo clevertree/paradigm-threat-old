@@ -1,14 +1,14 @@
 /** PDF Asset **/
 
 div.asset-pdf {
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     align-items: center;
     /*margin: 0.5em;*/
 }
 div.asset-pdf > embed {
-    min-height: 32em;
-    min-width: 21em;
+    height: 23em;
+    width: 21em;
     vertical-align: top;
     /*margin: 1em;*/
 }
@@ -23,12 +23,7 @@ div.asset-pdf > a {
     div.asset-pdf > embed {
         display: block;
         margin: auto;
-        max-width: 90vw;
+        width: 90vw;
+        height: 90vw;
     }
 }
-@media only screen and (min-width: 640px) {
-    div.asset-pdf {
-        float: right;
-    }
-}
-

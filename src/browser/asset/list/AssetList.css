@@ -25,14 +25,16 @@ div.asset-list.spread {
     div.asset-list.right {
         float: right;
         max-width: 24vw;
-        padding: 0.5em;
-        margin-left: 1em;
+        padding-right: 0.5em;
+        margin-left: 0.5em;
+        clear: right;
     }
     div.asset-list.left {
         float: left;
         max-width: 24vw;
-        padding: 0.5em;
-        margin-right: 1em;
+        padding-left: 0.5em;
+        margin-right: 0.5em;
+        clear: left;
     }
     div.asset-list.left > .asset,
     div.asset-list.right > .asset {
