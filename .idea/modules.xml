@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/Documents/saturniancosmology.org/saturniancosmology.org/files/.idea/files.iml" filepath="$USER_HOME$/Documents/saturniancosmology.org/saturniancosmology.org/files/.idea/files.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/paradigm-threat.iml" filepath="$PROJECT_DIR$/.idea/paradigm-threat.iml" />
     </modules>
   </component>

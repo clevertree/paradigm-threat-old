@@ -9,6 +9,7 @@ import ServerConfig from "../../../server/ServerConfig";
 import AssetList from "../list/AssetList";
 
 import "./MarkdownAsset.css";
+import AssetBrowser from "../../AssetBrowser";
 
 
 const serverConfig = new ServerConfig();
@@ -105,7 +106,7 @@ export default class MarkdownAsset extends React.Component {
         // console.log('processImageList', props, urlList);
         return <AssetList className="spread">
             {urlList.map((src, i) => {
-                return <ImageAsset key={i} src={src} className="list"/>
+                return AssetBrowser.renderAsset(src, i);
             })}
         </AssetList>; //  <ImageAsset {...props} />;
     }

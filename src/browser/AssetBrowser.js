@@ -93,12 +93,34 @@ export default class AssetBrowser extends React.Component {
         return <AssetList className="spread">
             {this.state.files.map((file, i) => {
                 const url = serverConfig.getURL(file);
-                return this.renderAsset(url, i);
+                return AssetBrowser.renderAsset(url, i);
             })}
         </AssetList>;
     }
 
-    renderAsset(src, i=-1) {
+    async updateIndex() {
+        const currentPath = this.props.location.pathname;
+        const assetIndex = new AssetIndex();
+        const state = await assetIndex.getPathFiles(currentPath);
+        // state.directories = state.directories.filter(
+        //     directory => directory !== currentPath
+        // )
+
+        this.setState(state);
+    }
+
+    scrollToTop() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
+    /** Static **/
+
+
+    static renderAsset(src, i=-1) {
         const props = {
             key: i,
             className: 'list',
@@ -122,24 +144,6 @@ export default class AssetBrowser extends React.Component {
         }
     }
 
-    async updateIndex() {
-        const currentPath = this.props.location.pathname;
-        const assetIndex = new AssetIndex();
-        const state = await assetIndex.getPathFiles(currentPath);
-        // state.directories = state.directories.filter(
-        //     directory => directory !== currentPath
-        // )
-
-        this.setState(state);
-    }
-
-    scrollToTop() {
-        window.scroll({
-            top: 0,
-            left: 0,
-            behavior: 'smooth'
-        });
-    }
 }
 
 
