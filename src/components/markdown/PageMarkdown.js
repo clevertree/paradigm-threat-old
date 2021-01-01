@@ -21,8 +21,10 @@ export default class PageMarkdown extends React.Component {
 
     componentDidMount() {
         const filePath = this.props.file;
-        fetch(filePath).then((response) => response.text()).then((content) => {
-            this.setState({ content })
+        fetch(filePath)
+            .then((response) => response.text())
+            .then((content) => {
+            this.setState({ content });
         })
     }
 

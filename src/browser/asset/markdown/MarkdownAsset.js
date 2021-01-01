@@ -76,7 +76,22 @@ export default class MarkdownAsset extends React.Component {
         this.setState({
             loading: false,
             source
-        });
+        }, () => this.scrollToHash());
+
+    }
+
+
+    scrollToHash() {
+        // let hash = document.location.hash;
+        // if(hash) {
+        //     hash = hash.substr(1);
+        //     let scrollElm = document.getElementById(hash); // TODO: check content, not document
+        //     console.log("loaded", hash, scrollElm)
+        //     if(scrollElm && scrollElm.scrollIntoView) {
+        //         scrollElm.scrollIntoView();
+        //         setTimeout(() => scrollElm.scrollIntoView(), 1);
+        //     }
+        // }
     }
 
     processImage(props) {

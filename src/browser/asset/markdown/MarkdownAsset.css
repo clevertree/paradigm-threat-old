@@ -46,7 +46,9 @@ div.asset-markdown > div > h3:first-of-type {
 }
 
 
-div.asset-markdown > div > pre {
+div.asset-markdown > div > pre > code,
+div.asset-markdown > div > p > code {
+    display: block;
     background: #AAA;
     padding: 1em;
     border-radius: 4px;

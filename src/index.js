@@ -58,6 +58,29 @@ document.addEventListener('click', function(e) {
     }
 })
 
+console.log("Dev mode: ", process.env.NODE_ENV);
+if(process.env.NODE_ENV === 'development') {
+    let lastScroll = null;
+    setInterval(function() {
+        let hash = document.location.hash;
+        // console.log(window.scrollY, hash, lastScroll)
+        if(lastScroll === null) {
+            if(hash) {
+                const scroll = parseFloat(hash.substr(1));
+                if(!isNaN(scroll)) {
+                    // console.log("Updating scroll: ", scroll)
+                    window.scrollTo(0, scroll);
+                }
+            }
+        }
+        if(window.scrollY !== lastScroll) {
+            document.location.hash = window.scrollY;
+            lastScroll = window.scrollY;
+            // console.log("Updating lastScroll: ", lastScroll)
+        }
+    }, 1000)
+}
+
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
