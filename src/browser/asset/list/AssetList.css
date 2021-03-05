@@ -44,11 +44,27 @@ div.asset-list.spread {
 
     div.asset-list > .asset {
         /*width: 100%;*/
-        padding-bottom: 1em;
+        /*padding-bottom: 1em;*/
     }
+
+    div.asset-list > .asset + .asset {
+        padding-top: 1em;
+    }
+
     div.asset-list > .asset:last-child {
         padding-bottom: inherit;
     }
+
+    div.asset-list > p {
+        margin-top: 2px;
+        text-indent: 0 !important;
+        text-align: justify !important;
+        font-size: smaller;
+    }
+
+
+    /** Spread **/
+
     div.asset-list.spread {
         /*display: flex;*/
         /*flex-wrap: wrap;*/

@@ -97,6 +97,8 @@ export default class MarkdownAsset extends React.Component {
     processImage(props) {
         let src = props.src;
         if(src) {
+            if(src.substr(0, 1) === '/')
+                src = '.' + src;
             src = serverConfig.getURL(src);
             if(this.usedImages.indexOf(src) === -1)
                 this.usedImages.push(src);
