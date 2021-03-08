@@ -6,7 +6,8 @@ export default class PageHeader extends React.Component {
     constructor(props) {
         super(props);
         this.cb = {
-            onScroll: e => this.updateScrollPosition(e)
+            onScroll: e => this.updateScrollPosition(e),
+            scrollToTop: e => this.scrollToTop(e)
         }
         this.ref = {
             header: React.createRef(),
@@ -73,6 +74,11 @@ export default class PageHeader extends React.Component {
                         } )}
                     </div> : null}
                 </div>
+                <div className="bottom-text"
+                     onClick={this.cb.scrollToTop}
+                    >
+                    Back to top
+                </div>
             </div>
 
         );
@@ -89,5 +95,15 @@ export default class PageHeader extends React.Component {
             console.log('floating', floating, top + height, window.scrollY);
             this.setState({floating, height: floating ? headerHeight : 0})
         }
+        return floating;
     }
+
+    scrollToTop() {
+        window.scroll({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        });
+    }
+
 }

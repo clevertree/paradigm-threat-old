@@ -8,13 +8,13 @@ const siteJSONURL = serverConfig.getURL('site/report.html');
 
 
 export default class PageFooter extends React.Component {
+
     render() {
         const links = this.props.links;
         return (
             <div className="asui-page-footer" >
-
                 <div className="links">
-                    {links ? <div className="main">
+                    {links && links.length > 0 ? <div className="main">
                         {links.map(([href, title], i) => {
                             const props = {
                                 href

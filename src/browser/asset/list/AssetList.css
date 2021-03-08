@@ -60,6 +60,8 @@ div.asset-list.spread {
         text-indent: 0 !important;
         text-align: justify !important;
         font-size: smaller;
+        background: #CCC;
+        padding: 4px;
     }
 
 

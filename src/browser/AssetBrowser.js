@@ -55,11 +55,6 @@ export default class AssetBrowser extends React.Component {
                 </a>
                 {this.renderAssets()}
                 {/*{this.renderDirectories()}*/}
-                <div className="bottom-text"
-                    onClick={this.cb.scrollToTop}
-                    >
-                    Back to top
-                </div>
             </div>
         )
     }

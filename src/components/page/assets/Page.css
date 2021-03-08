@@ -8,6 +8,7 @@ div.asui-page-container {
     /*font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',*/
     /*'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',*/
     /*sans-serif;*/
+    padding-bottom: 4em;
 }
 
 
@@ -18,3 +19,39 @@ div.asui-page-header.floating > div.links {
     right: 0;
 }
 
+@media only screen and (max-width: 640px) {
+    div.asui-page-header.floating > div.links {
+        position: inherit;
+    }
+}
+
+
+
+/** Bottom Text **/
+
+div.asui-page-header > .bottom-text {
+    display: none;
+}
+
+div.asui-page-header.floating > .bottom-text {
+    display: block;
+    background: #DDD;
+    border-top: 2px solid #888;
+    cursor: pointer;
+    text-align: center;
+    clear: both;
+    padding: 1em;
+}
+div.asui-page-container > div.asui-page-header > .bottom-text:hover {
+    color: #3333AA;
+    font-weight: bold;
+}
+
+
+
+div.asui-page-container > div.asui-page-header.floating > .bottom-text {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}

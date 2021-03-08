@@ -23,6 +23,10 @@ export default class PageContainer extends React.Component {
         themeName: 'theme-default'
     }
 
+    constructor(props) {
+        super(props);
+    }
+
     render() {
         const currentPath = this.props.location.pathname;
 
@@ -34,7 +38,10 @@ export default class PageContainer extends React.Component {
 
         return (
             <div className={className}>
-                <PageHeader currentPath={currentPath} links={this.props.headerLinks} subLinks={this.props.subHeaderLinks}/>
+                <PageHeader
+                    currentPath={currentPath}
+                    links={this.props.headerLinks}
+                    subLinks={this.props.subHeaderLinks}/>
                 <PageContent>
                     {this.props.children}
                 </PageContent>
@@ -42,4 +49,5 @@ export default class PageContainer extends React.Component {
             </div>
         );
     }
+
 }

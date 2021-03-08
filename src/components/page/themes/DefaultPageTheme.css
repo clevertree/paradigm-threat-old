@@ -28,14 +28,19 @@ div.asui-page-container.theme-default a:not(:hover) {
 
 .theme-default div.asui-page-header > a.image > div {
     display: block;
-    background-size: contain;
     height: 200px;
     background: url("./img/header.png") no-repeat center;
     background-size: contain;
 }
+@media only screen and (max-width: 640px) {
+
+    .theme-default div.asui-page-header > a.image > div {
+        height: 25vw;
+    }
+}
 
 .theme-default div.asui-page-footer > div.text {
-    padding: 1vw;
+    padding: 1em;
     text-align: center;
 }
 

@@ -4,6 +4,7 @@ div.asset-markdown {
     display: block;
     margin: 0 auto;
     align-self: start;
+    padding-bottom: 0.5em;
 }
 
 div.asset-markdown > div > :not(div) {
