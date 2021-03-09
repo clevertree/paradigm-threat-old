@@ -3,10 +3,11 @@
 
 div.asset-video {
     margin: 0.5em;
+    text-align: center;
 }
 div.asset-video > video {
-    max-height: 20em;
-    max-width: 36vw;
+    /*max-height: 20em;*/
+    /*max-width: 36vw;*/
     vertical-align: top;
 }
 

@@ -1,5 +1,6 @@
 /** Image Asset **/
 
+video.asset-image,
 img.asset-image {
     display: block;
     max-width: 900px;
@@ -11,6 +12,7 @@ img.asset-image {
 
 
 @media only screen and (max-width: 1900px) {
+    video.asset-image,
     img.asset-image {
         /*clear: both;*/
         max-width: 42vw;
@@ -19,6 +21,7 @@ img.asset-image {
 }
 
 @media only screen and (max-width: 640px) {
+    video.asset-image,
     img.asset-image {
         max-width: 90vw;
     }

@@ -10,6 +10,7 @@ import AssetList from "../list/AssetList";
 
 import "./MarkdownAsset.css";
 import AssetBrowser from "../../AssetBrowser";
+import VideoAsset from "../video/VideoAsset";
 
 
 const serverConfig = new ServerConfig();
@@ -31,6 +32,7 @@ export default class MarkdownAsset extends React.Component {
         this.options={
             overrides: {
                 img: (props) => this.processImage(props),
+                video: (props) => this.processVideo(props),
                 assetList: (props) => this.processAssetList(props),
                 assetListExtra: (props) => this.processAssetListExtra(props),
                 meta: (props) => this.processMetaTag(props),
@@ -106,6 +108,21 @@ export default class MarkdownAsset extends React.Component {
         // console.log('processImage', props);
         return <ImageAsset {...props} src={src}/>;
     }
+
+    /** TODO: redundant **/
+    processVideo(props) {
+        let src = props.src;
+        if(src) {
+            if(src.substr(0, 1) === '/')
+                src = '.' + src;
+            src = serverConfig.getURL(src);
+            if(this.usedImages.indexOf(src) === -1)
+                this.usedImages.push(src);
+        }
+        // console.log('processImage', props);
+        return <VideoAsset {...props} src={src}/>;
+    }
+
 
     processAssetList(props) {
         return <AssetList
