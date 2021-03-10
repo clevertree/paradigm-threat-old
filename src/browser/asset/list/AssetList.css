@@ -11,8 +11,8 @@ div.asset-list {
 /** Spread **/
 
 div.asset-list.spread {
-    /*display: flex;*/
-    /*flex-wrap: wrap;*/
+    display: flex;
+    flex-wrap: wrap;
     /*justify-content: center;*/
 }
 
@@ -73,7 +73,7 @@ div.asset-list.spread {
     }
 
     div.asset-list.spread > * {
-        float: left;
+        /*float: left;*/
         padding: 0.5em;
     }
     div.asset-list.spread > *:nth-child(2n) {

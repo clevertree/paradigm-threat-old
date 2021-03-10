@@ -39,6 +39,11 @@ div.asui-page-container.theme-default a:not(:hover) {
     }
 }
 
+.theme-default div.asui-page-footer {
+    border-top: 2px solid #888;
+    clear: both;
+}
+
 .theme-default div.asui-page-footer > div.text {
     padding: 1em;
     text-align: center;

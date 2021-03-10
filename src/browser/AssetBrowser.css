@@ -24,7 +24,7 @@ div.asset-browser > div.directories > a {
 div.asset-browser > div.asset-list {
     /*display: flex;*/
     /*flex-wrap: wrap;*/
-    align-items: center;
+    /*align-items: center;*/
     /*justify-content: center;*/
 }
 
