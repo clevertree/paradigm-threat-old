@@ -10,6 +10,8 @@ export default class VideoAsset extends React.Component {
     };
 
     render() {
+        if(this.parseYoutubeURL(this.props.src))
+            return this.renderYoutube();
         // let i = this.props.i || 0;
         let className = 'asset-video asset-image';
         // className += [' even', ' odd'][i % 2];
@@ -21,5 +23,26 @@ export default class VideoAsset extends React.Component {
                 </video>
             </div>
         );
+    }
+
+    renderYoutube() {
+        let className = 'asset-video asset-image youtube';
+        // className += [' even', ' odd'][i % 2];
+        const src = 'https://www.youtube.com/embed/' + this.parseYoutubeURL(this.props.src);
+        const title = 'Youtube';
+        return (
+            <div className={className}>
+                <iframe title={title} {...this.props} src={src}>
+                </iframe>
+            </div>
+        );
+
+    }
+
+
+    parseYoutubeURL(url) {
+        var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+        var match = url.match(regExp);
+        return (match && match[7].length===11)? match[7] : false;
     }
 }
