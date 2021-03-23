@@ -67,3 +67,10 @@ div.asset-markdown > div > blockquote > p {
     border-left: 4px solid #AAA;
     border-right: 4px solid #AAA;
 }
+
+/** overflow in asset list **/
+
+div.asset-list > div.asset-markdown {
+    max-height: 100vh;
+    overflow-y: auto;
+}
