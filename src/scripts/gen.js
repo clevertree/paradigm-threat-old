@@ -10,7 +10,19 @@ const PATH_INDEX_FILE = PATH_FILES + '/index.json';
 const PATH_INDEX_RSS = PATH_FILES + '/rss.xml';
 const PATH_TOUCH_FILE = PATH_SRC + '/touch.js';
 const PATH_IGNORE = ['.', '..', '.git', '.idea', 'bower_components', 'node_modules', 'www', 'platforms'];
-const FILE_MATCH = ['.jpg', '.jpeg', '.png', '.gif', '.md', '.m4v', '.mp4', '.pdf', 'stats.json'];
+const FILE_MATCH = [
+    '.jpg',
+    '.jpeg',
+    '.png',
+    '.gif',
+    '.svg',
+    '.md',
+    '.m4v',
+    '.mp4',
+    '.mkv',
+    '.pdf',
+    'stats.json'
+];
 let indexJSON = [];
 
 async function start() {
@@ -103,8 +115,10 @@ function processRSS(filePathList) {
             case 'jpeg':
             case 'png':
             case 'gif':
+            case 'svg':
             case 'm4v':
             case 'mp4':
+            case 'mkv':
             case 'pdf':
                 break;
             default:
