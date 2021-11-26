@@ -4,7 +4,7 @@ const path = require('path');
 const { readdir } = fs.promises;
 const RSS = require('rss');
 
-const PATH_FILES = path.resolve(__dirname, '../../public/files');
+const PATH_FILES = path.resolve(__dirname, '../../files');
 const PATH_SRC = path.resolve(__dirname, '../../src');
 const PATH_INDEX_FILE = PATH_FILES + '/index.json';
 const PATH_INDEX_RSS = PATH_FILES + '/rss.xml';
